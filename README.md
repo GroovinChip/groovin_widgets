@@ -10,7 +10,11 @@ This package currently contains the following widgets:
 
 ModalDrawerHandle allows you to add a highly customizable drawer handle widget to your modalBottomSheets.
 
-Sample images: https://imgur.com/gallery/zf6NriP
+Sample image:
+
+![Alt Text](https://i.imgur.com/wEP5AMQ.png)
+
+Full image gallery: https://imgur.com/gallery/zf6NriP
 
 YouTube video walkthrough: https://www.youtube.com/watch?v=VF-zR9ougi8&feature=youtu.be
 

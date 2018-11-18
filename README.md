@@ -83,7 +83,7 @@ By default, OutlineDropdownButton is initialized with the following properties:
   });
 ```
 
-A default OutlineDropdownButton will look as follows: https://i.imgur.com/7Hjg3YJ.png
+A default OutlineDropdownButton will look as follows: ![Alt Text](https://i.imgur.com/7Hjg3YJ.png)
 
 ## Getting Started with Flutter
 

@@ -1,4 +1,4 @@
-## [1.1] - 11/18/2018
+## [1.1.0] - 11/18/2018
 
 * Changed the default padding for OutlineDropdownButton
 

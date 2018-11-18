@@ -26,6 +26,7 @@ class OutlineDropdownButton extends StatefulWidget {
   OutlineDropdownButton({
     this.inputDecoration = const InputDecoration(
       border: OutlineInputBorder(),
+      contentPadding: EdgeInsets.all(8.0),
     ),
     this.disabledHint,
     this.elevation = 8, // the default value per the source

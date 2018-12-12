@@ -102,6 +102,14 @@ ExpansionTile builds a ListTile for the user to tap on; GroovinExpansionTile bui
 ListTile so that you can add a subtitle and adjust the border radius of the InkWell the tile is
 contained in.
 
+Example images:
+- Wrapped in Material with 2.0 elevation, not expanded:
+![Alt text](https://i.imgur.com/UoBiGbt.png)
+- Wrapped Material with 2.0 elevation, expanded:
+![Alt text](https://i.imgur.com/axrlXGB.png)
+- Wrapped Material with 2.0 elevation, expanded, showing InkWell with topRight and topLeft radius:
+![Alt text](https://i.imgur.com/JiwvY2H.png)
+
 ## Getting Started with Flutter
 
 For help getting started with Flutter, view our online [documentation](https://flutter.io/).

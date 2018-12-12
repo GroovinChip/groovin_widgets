@@ -1,3 +1,6 @@
+## [1.2.0] - 12/12/2018
+* Added the GroovinExpansionTile widget
+
 ## [1.1.0] - 11/18/2018
 
 * Changed the default padding for OutlineDropdownButton

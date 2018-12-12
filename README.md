@@ -5,6 +5,7 @@ A Flutter package containing widgets created by GroovinChip.
 This package currently contains the following widgets:
 - ModalDrawerHandle
 - OutlineDropdownButton
+- GroovinExpansionTile
 
 ## ModalDrawerHandle
 
@@ -91,6 +92,15 @@ By default, OutlineDropdownButton is initialized with the following properties:
 A default OutlineDropdownButton will look as follows:
 
 ![Alt Text](https://i.imgur.com/7Hjg3YJ.png)
+
+## GroovinExpansionTile
+This widget is a modified Expansion tile that allows for more customization over its appearance.
+You can customize the BoxDecoration of the ExpansionTile so you can remove the lines that appear
+above and below it when expanded, and so on.
+
+ExpansionTile builds a ListTile for the user to tap on; GroovinExpansionTile builds a custom
+ListTile so that you can add a subtitle and adjust the border radius of the InkWell the tile is
+contained in.
 
 ## Getting Started with Flutter
 

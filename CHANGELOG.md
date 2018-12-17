@@ -1,4 +1,4 @@
-## [1.2.1] - 12/12/2018
+## [1.2.1] - 12/17/2018
 * The default trailing icon in the GroovinExpansionTile widget now is initialized with Colors.grey,
 and the property is open to customization
 

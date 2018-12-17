@@ -102,6 +102,9 @@ ExpansionTile builds a ListTile for the user to tap on; GroovinExpansionTile bui
 ListTile so that you can add a subtitle and adjust the border radius of the InkWell the tile is
 contained in.
 
+As of version 1.2.1 of this library, this widget's default trailing icon will have a set color of
+Colors.grey. This icon color is open to customization via the parameter `defaultTrailingIconColor`.
+
 Example images:
 - Wrapped in Material with 2.0 elevation, not expanded:
 ![Alt text](https://i.imgur.com/UoBiGbt.png)

@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Colors.indigo,
+        //brightness: Brightness.dark
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -42,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 context: context,
                 builder: (builder) {
                   return Container(
+                    height: 250.0,
                     child: Column(
                       children: <Widget>[
                         Padding(
@@ -88,8 +90,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 2.0,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: GroovinExpansionTile(
+                  defaultTrailingIconColor: Colors.indigoAccent,
                   leading: CircleAvatar(
-                    child: Icon(Icons.person),
+                    backgroundColor: Colors.indigoAccent,
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
                   ),
                   title: Text("Test Person", style: TextStyle(color: Colors.black),),
                   subtitle: Text("123-456-7890"),

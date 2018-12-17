@@ -18,13 +18,14 @@ class GroovinExpansionTile extends StatefulWidget {
     @required this.title,
     this.subtitle,
     this.backgroundColor,
+    this.defaultTrailingIconColor = Colors.grey,
     this.onExpansionChanged,
     this.boxDecoration,
     this.inkwellRadius,
     this.children = const <Widget>[],
     this.trailing,
     this.initiallyExpanded = false,
-  }) : assert(initiallyExpanded != null),
+  })  : assert(initiallyExpanded != null),
         super(key: key);
 
   /// A widget to display before the title.
@@ -57,6 +58,9 @@ class GroovinExpansionTile extends StatefulWidget {
   /// The color to display behind the sublist when expanded.
   final Color backgroundColor;
 
+  /// The color to assign to the default trailing icon
+  final Color defaultTrailingIconColor;
+
   /// A widget to display instead of a rotating arrow icon.
   final Widget trailing;
 
@@ -67,10 +71,14 @@ class GroovinExpansionTile extends StatefulWidget {
   _GroovinExpansionTileState createState() => _GroovinExpansionTileState();
 }
 
-class _GroovinExpansionTileState extends State<GroovinExpansionTile> with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeOutTween = CurveTween(curve: Curves.easeOut);
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
+class _GroovinExpansionTileState extends State<GroovinExpansionTile>
+    with SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeOutTween =
+      CurveTween(curve: Curves.easeOut);
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0.0, end: 0.5);
 
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _headerColorTween = ColorTween();
@@ -96,11 +104,12 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
     _borderColor = _controller.drive(_borderColorTween.chain(_easeOutTween));
     _headerColor = _controller.drive(_headerColorTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
-    _backgroundColor = _controller.drive(_backgroundColorTween.chain(_easeOutTween));
+    _backgroundColor =
+        _controller.drive(_backgroundColorTween.chain(_easeOutTween));
 
-    _isExpanded = PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
-    if (_isExpanded)
-      _controller.value = 1.0;
+    _isExpanded =
+        PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
+    if (_isExpanded) _controller.value = 1.0;
   }
 
   @override
@@ -116,8 +125,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
         _controller.forward();
       } else {
         _controller.reverse().then<void>((void value) {
-          if (!mounted)
-            return;
+          if (!mounted) return;
           setState(() {
             // Rebuild without widget.children.
           });
@@ -145,14 +153,21 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
               inkwellRadius: widget.inkwellRadius,
               leading: widget.leading,
               title: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead.copyWith(color: titleColor),
+                style: Theme.of(context)
+                    .textTheme
+                    .subhead
+                    .copyWith(color: titleColor),
                 child: widget.title,
               ),
               subtitle: widget.subtitle,
-              trailing: widget.trailing ?? RotationTransition(
-                turns: _iconTurns,
-                child: const Icon(Icons.expand_more),
-              ),
+              trailing: widget.trailing ??
+                  RotationTransition(
+                    turns: _iconTurns,
+                    child: Icon(
+                      Icons.expand_more,
+                      color: widget.defaultTrailingIconColor,
+                    ),
+                  ),
             ),
           ),
           ClipRect(
@@ -169,16 +184,14 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
   @override
   void didChangeDependencies() {
     final ThemeData theme = Theme.of(context);
-    _borderColorTween
-      ..end = theme.dividerColor;
+    _borderColorTween..end = theme.dividerColor;
     _headerColorTween
       ..begin = theme.textTheme.subhead.color
       ..end = theme.accentColor;
     _iconColorTween
       ..begin = theme.unselectedWidgetColor
       ..end = theme.accentColor;
-    _backgroundColorTween
-      ..end = widget.backgroundColor;
+    _backgroundColorTween..end = widget.backgroundColor;
     super.didChangeDependencies();
   }
 
@@ -190,6 +203,5 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
       builder: _buildChildren,
       child: closed ? null : Column(children: widget.children),
     );
-
   }
 }

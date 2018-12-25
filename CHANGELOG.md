@@ -1,3 +1,6 @@
+## [1.3.1] - 12/25/2018
+* Updates README
+
 ## [1.3.0] - 12/25/2018
 * Introduces the OutlineDropdownButtonFormField widget (credit: DarthDie)
 

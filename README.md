@@ -5,6 +5,7 @@ A Flutter package containing widgets created by GroovinChip.
 This package currently contains the following widgets:
 - ModalDrawerHandle
 - OutlineDropdownButton
+- OutlineDropdownButtonFormField
 - GroovinExpansionTile
 
 ## ModalDrawerHandle

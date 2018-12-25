@@ -1,3 +1,6 @@
+## [1.3.0] - 12/25/2018
+* Introduces the OutlineDropdownButtonFormField widget (credit: DarthDie)
+
 ## [1.2.1] - 12/17/2018
 * The default trailing icon in the GroovinExpansionTile widget now is initialized with Colors.grey,
 and the property is open to customization

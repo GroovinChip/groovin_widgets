@@ -13,15 +13,18 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   final double iconSize;
   final bool isDense;
   final bool isExpanded;
+  final TextStyle style;
+  final value;
+
+  // These properties are unique to this widget
   final List<DropdownMenuItem<T>> items;
   final ValueChanged<T> onChanged;
   final FormFieldValidator<T> validator;
   final FormFieldSetter<T> onSaved;
-  final TextStyle style;
-  final value;
 
-  /// The widget is created with one default property: an outline border
-  /// surrounding the DropdownButton
+  /// The widget is created with three default properties that correspond
+  /// to the default properties in the original widget. The constructor does
+  /// not create the border due to form validation limitations.
   OutlineDropdownButtonFormField({
     this.disabledHint,
     this.elevation = 8, // the default value per the source
@@ -38,44 +41,46 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   });
 
   @override
-  _OutlineDropdownButtonFormFieldState<T> createState() => _OutlineDropdownButtonFormFieldState<T>();
+  _OutlineDropdownButtonFormFieldState<T> createState() =>
+      _OutlineDropdownButtonFormFieldState<T>();
 }
 
-class _OutlineDropdownButtonFormFieldState<T> extends State<OutlineDropdownButtonFormField<T>> {
-  // OutlineDropdownButtonFormField widget builder
+class _OutlineDropdownButtonFormFieldState<T>
+    extends State<OutlineDropdownButtonFormField<T>> {
+  /// This widget creates the InputBorder explicitly due to form validation
+  /// limitations
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: FormField<T>(
-        onSaved: (val) => widget.onSaved,
-        validator: widget.validator,
-        builder: (FormFieldState<T> state) {
-          return InputDecorator(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              contentPadding: EdgeInsets.all(8.0),
-              errorText: state.hasError ? state.errorText : null,
+        child: FormField<T>(
+      onSaved: (val) => widget.onSaved,
+      validator: widget.validator,
+      builder: (FormFieldState<T> state) {
+        return InputDecorator(
+          decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            contentPadding: EdgeInsets.all(8.0),
+            errorText: state.hasError ? state.errorText : null,
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<T>(
+              disabledHint: widget.disabledHint,
+              elevation: widget.elevation,
+              hint: widget.hint,
+              iconSize: widget.iconSize,
+              isDense: widget.isDense,
+              isExpanded: widget.isExpanded,
+              items: widget.items,
+              style: widget.style,
+              value: widget.value,
+              onChanged: (T newValue) {
+                state.didChange(newValue);
+                widget.onChanged(newValue);
+              },
             ),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<T>(
-                disabledHint: widget.disabledHint,
-                elevation: widget.elevation,
-                hint: widget.hint,
-                iconSize: widget.iconSize,
-                isDense: widget.isDense,
-                isExpanded: widget.isExpanded,
-                items: widget.items,
-                style: widget.style,
-                value: widget.value,
-                onChanged: (T newValue) {
-                  state.didChange(newValue);
-                  widget.onChanged(newValue);
-                },
-              ),
-            ),
-          );
-        },
-      )
-    );
+          ),
+        );
+      },
+    ));
   }
 }

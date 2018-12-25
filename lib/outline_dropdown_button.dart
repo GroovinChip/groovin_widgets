@@ -21,8 +21,9 @@ class OutlineDropdownButton extends StatefulWidget {
   final TextStyle style;
   final value;
 
-  /// The widget is created with one default property: an outline border
-  /// surrounding the DropdownButton
+  /// The widget is created with four default property: an outline border
+  /// surrounding the DropdownButton, and three properties that correspond
+  /// to the default properties in the original widget
   OutlineDropdownButton({
     this.inputDecoration = const InputDecoration(
       border: OutlineInputBorder(),

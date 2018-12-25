@@ -93,6 +93,20 @@ A default OutlineDropdownButton will look as follows:
 
 ![Alt Text](https://i.imgur.com/7Hjg3YJ.png)
 
+## OutlineDropdownButtonFormField
+OutlineDropdownButtonFormField is similar to OutlineDropdownButton but is optimized for
+Forms. The additional properties are:
+
+```
+final List<DropdownMenuItem<T>> items;
+final ValueChanged<T> onChanged;
+final FormFieldValidator<T> validator;
+final FormFieldSetter<T> onSaved;
+```
+
+This widget builds the InputBorder explicitly in the widget rather than the constructor due to
+form validation limitations.
+
 ## GroovinExpansionTile
 This widget is a modified Expansion tile that allows for more customization over its appearance.
 You can customize the BoxDecoration of the ExpansionTile so you can remove the lines that appear

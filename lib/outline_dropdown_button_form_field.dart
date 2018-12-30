@@ -15,6 +15,7 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   final bool isExpanded;
   final TextStyle style;
   final value;
+  final InputDecoration decoration;
 
   // These properties are unique to this widget
   final List<DropdownMenuItem<T>> items;
@@ -38,6 +39,10 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
     this.value,
     this.validator,
     this.onSaved,
+    this.decoration = const InputDecoration(
+      border: OutlineInputBorder(),
+      contentPadding: EdgeInsets.all(8.0),
+    ),
   });
 
   @override
@@ -56,12 +61,12 @@ class _OutlineDropdownButtonFormFieldState<T>
       onSaved: (val) => widget.onSaved,
       validator: widget.validator,
       builder: (FormFieldState<T> state) {
+        final decoration = widget.decoration.copyWith(
+          errorText: state.hasError ? state.errorText : null
+        );
+
         return InputDecorator(
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.all(8.0),
-            errorText: state.hasError ? state.errorText : null,
-          ),
+          decoration: decoration,
           child: DropdownButtonHideUnderline(
             child: DropdownButton<T>(
               disabledHint: widget.disabledHint,

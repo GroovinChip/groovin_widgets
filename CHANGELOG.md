@@ -1,3 +1,6 @@
+## [1.3.2] - 12/30/2018
+* Updates OutlineDropdownButtonFormField widget to allow for custom InputDecorations (credit: DarthDie)
+
 ## [1.3.1] - 12/25/2018
 * Updates README
 

@@ -105,8 +105,8 @@ final FormFieldValidator<T> validator;
 final FormFieldSetter<T> onSaved;
 ```
 
-This widget builds the InputBorder explicitly in the widget rather than the constructor due to
-form validation limitations.
+This widget builds the InputDecoration explicitly in the widget rather than the constructor due to
+form validation limitations. However, the decoration is open for customization.
 
 ## GroovinExpansionTile
 This widget is a modified Expansion tile that allows for more customization over its appearance.

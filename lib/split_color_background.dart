@@ -9,26 +9,37 @@ import 'package:flutter/material.dart';
 class SplitColorBackground extends StatelessWidget {
   /// Represents the flex property of the Flexible containing the header widget. Defaults to 1.
   final int headerFlex;
+
   /// Represents the Widget that will be used as the header
   final Widget header;
+
   /// Represents the color for the header widget
   final Color headerColor;
+
   /// Represents the flex property of the Flexible containing the body widget. Defaults to 4.
   final int bodyFlex;
+
   /// Represents the Widget that will be used as the body
   final Widget body;
+
   /// Represents the corner radius for the top left corner of the body
   final double topLeftCornerRadius;
+
   /// Represents the corner radius for the top right corner of the body
   final double topRightCornerRadius;
+
   /// Represents the color for the body widget
   final Color bodyColor;
+
   /// The Scaffold appBar is available for optional use.
   final AppBar appBar;
+
   /// The Scaffold FloatingActionButton is available for optional use.
   final FloatingActionButton floatingActionButton;
+
   /// The Scaffold FloatingActionButtonLocation is available for optional use.
   final FloatingActionButtonLocation floatingActionButtonLocation;
+
   /// The Scaffold BottomNavigationBar is available for optional use.
   final BottomNavigationBar bottomNavigationBar;
 

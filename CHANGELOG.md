@@ -1,3 +1,6 @@
+## [1.4.2] - 05/20/2019
+* Addresses pub health suggestions
+
 ## [1.4.1] - 05/20/2019
 * Updates README
 

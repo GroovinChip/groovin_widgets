@@ -1,3 +1,6 @@
+## [1.4.0] - 05/20/2019
+* Adds the SplitColorBackground widget
+
 ## [1.3.2] - 12/30/2018
 * Updates OutlineDropdownButtonFormField widget to allow for custom InputDecorations (credit: DarthDie)
 

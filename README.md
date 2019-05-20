@@ -128,6 +128,49 @@ Example images:
 - Wrapped Material with 2.0 elevation, expanded, showing InkWell with topRight and topLeft radius:
 ![Alt text](https://i.imgur.com/JiwvY2H.png)
 
+## SplitColorBackground
+This widget enables the replication of designs seen on dribbble, uplabs, and other
+design websites that show a header section with one background color, a body section with
+a different background color, and rounded corners on the top of the body section.
+
+An example of what this looks like is as follows, taken from the example project included
+in this repository:
+
+![Alt text](https://i.imgur.com/kTqDAIv.jpg)
+
+This widget operates as a Scaffold who's body is a Column with two Flexible widgets to represent
+the header and the body. Various Scaffold properties are exposed to the developer. If you would like 
+more of the Scaffold properties opened up to customization, please file an issue on GitHub and 
+send me an additional email or tweet.
+
+The widget contains the following properties:
+```
+/// Represents the flex property of the Flexible containing the header widget. Defaults to 1.
+final int headerFlex;
+/// Represents the Widget that will be used as the header
+final Widget header;
+/// Represents the color for the header widget
+final Color headerColor;
+/// Represents the flex property of the Flexible containing the body widget. Defaults to 4.
+final int bodyFlex;
+/// Represents the Widget that will be used as the body
+final Widget body;
+/// Represents the corner radius for the top left corner of the body
+final double topLeftCornerRadius;
+/// Represents the corner radius for the top right corner of the body
+final double topRightCornerRadius;
+/// Represents the color for the body widget
+final Color bodyColor;
+/// The Scaffold appBar is available for optional use.
+final AppBar appBar;
+/// The Scaffold FloatingActionButton is available for optional use.
+final FloatingActionButton floatingActionButton;
+/// The Scaffold FloatingActionButtonLocation is available for optional use.
+final FloatingActionButtonLocation floatingActionButtonLocation;
+/// The Scaffold BottomNavigationBar is available for optional use.
+final BottomNavigationBar bottomNavigationBar;
+```
+
 ## Getting Started with Flutter
 
 For help getting started with Flutter, view our online [documentation](https://flutter.io/).

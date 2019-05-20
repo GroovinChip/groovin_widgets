@@ -7,6 +7,7 @@ This package currently contains the following widgets:
 - OutlineDropdownButton
 - OutlineDropdownButtonFormField
 - GroovinExpansionTile
+- SplitColorBackground
 
 ## ModalDrawerHandle
 

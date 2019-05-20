@@ -1,3 +1,6 @@
+## [1.4.1] - 05/20/2019
+* Updates README
+
 ## [1.4.0] - 05/20/2019
 * Adds the SplitColorBackground widget
 

@@ -1,7 +1,6 @@
 name: groovin_widgets
 description: A Flutter widget library containing custom widgets created and edited by GroovinChip.
 version: 1.4.3
-author: GroovinChip <groovinchip@gmail.com>
 homepage: https://github.com/GroovinChip/GroovinWidgets
 #---
 # Release commands:

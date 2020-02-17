@@ -140,7 +140,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
               inkwellRadius: widget.inkwellRadius,
               leading: widget.leading,
               title: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subtitle1.copyWith(color: titleColor),
+                style: Theme.of(context).textTheme.subhead.copyWith(color: titleColor),
                 child: widget.title,
               ),
               subtitle: widget.subtitle,
@@ -170,7 +170,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
     final ThemeData theme = Theme.of(context);
     _borderColorTween..end = theme.dividerColor;
     _headerColorTween
-      ..begin = theme.textTheme.subtitle1.color
+      ..begin = theme.textTheme.subhead.color
       ..end = theme.accentColor;
     _iconColorTween
       ..begin = theme.unselectedWidgetColor

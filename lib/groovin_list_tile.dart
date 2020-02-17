@@ -299,21 +299,21 @@ class GroovinListTile extends StatelessWidget {
     if (tileTheme != null) {
       switch (tileTheme.style) {
         case GroovinListTileStyle.drawer:
-          style = theme.textTheme.bodyText1;
+          style = theme.textTheme.body2;
           break;
         case GroovinListTileStyle.list:
-          style = theme.textTheme.subtitle1;
+          style = theme.textTheme.subhead;
           break;
       }
     } else {
-      style = theme.textTheme.subtitle1;
+      style = theme.textTheme.subhead;
     }
     final Color color = _textColor(theme, tileTheme, style.color);
     return _isDenseLayout(tileTheme) ? style.copyWith(fontSize: 13.0, color: color) : style.copyWith(color: color);
   }
 
   TextStyle _subtitleTextStyle(ThemeData theme, ListTileTheme tileTheme) {
-    final TextStyle style = theme.textTheme.bodyText2;
+    final TextStyle style = theme.textTheme.body1;
     final Color color = _textColor(theme, tileTheme, theme.textTheme.caption.color);
     return _isDenseLayout(tileTheme) ? style.copyWith(color: color, fontSize: 12.0) : style.copyWith(color: color);
   }

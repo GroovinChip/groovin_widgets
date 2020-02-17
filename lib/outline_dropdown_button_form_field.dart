@@ -32,7 +32,8 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
     this.hint,
     this.iconSize = 24.0, // the default value per the source
     this.isDense = false, // the default value per the source
-    this.isExpanded = true, // here I deviate from the source because this property is great
+    this.isExpanded =
+        true, // here I deviate from the source because this property is great
     @required this.items,
     this.onChanged,
     this.style,
@@ -46,10 +47,12 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   });
 
   @override
-  _OutlineDropdownButtonFormFieldState<T> createState() => _OutlineDropdownButtonFormFieldState<T>();
+  _OutlineDropdownButtonFormFieldState<T> createState() =>
+      _OutlineDropdownButtonFormFieldState<T>();
 }
 
-class _OutlineDropdownButtonFormFieldState<T> extends State<OutlineDropdownButtonFormField<T>> {
+class _OutlineDropdownButtonFormFieldState<T>
+    extends State<OutlineDropdownButtonFormField<T>> {
   /// This widget creates the InputBorder explicitly due to form validation
   /// limitations
   @override
@@ -59,7 +62,8 @@ class _OutlineDropdownButtonFormFieldState<T> extends State<OutlineDropdownButto
       onSaved: (val) => widget.onSaved,
       validator: widget.validator,
       builder: (FormFieldState<T> state) {
-        final decoration = widget.decoration.copyWith(errorText: state.hasError ? state.errorText : null);
+        final decoration = widget.decoration
+            .copyWith(errorText: state.hasError ? state.errorText : null);
 
         return InputDecorator(
           decoration: decoration,

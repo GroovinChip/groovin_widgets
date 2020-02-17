@@ -34,7 +34,8 @@ class OutlineDropdownButton extends StatefulWidget {
     this.hint,
     this.iconSize = 24.0, // the default value per the source
     this.isDense = false, // the default value per the source
-    this.isExpanded = true, // here I deviate from the source because this property is great
+    this.isExpanded =
+        true, // here I deviate from the source because this property is great
     this.items,
     this.onChanged,
     this.style,

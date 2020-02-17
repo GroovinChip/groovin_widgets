@@ -71,9 +71,12 @@ class GroovinExpansionTile extends StatefulWidget {
   _GroovinExpansionTileState createState() => _GroovinExpansionTileState();
 }
 
-class _GroovinExpansionTileState extends State<GroovinExpansionTile> with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
+class _GroovinExpansionTileState extends State<GroovinExpansionTile>
+    with SingleTickerProviderStateMixin {
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0.0, end: 0.5);
 
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _headerColorTween = ColorTween();
@@ -97,7 +100,8 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
     _headerColor = _controller.drive(_headerColorTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
 
-    _isExpanded = PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
+    _isExpanded =
+        PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
     if (_isExpanded) _controller.value = 1.0;
   }
 
@@ -122,7 +126,8 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
       }
       PageStorage.of(context)?.writeState(context, _isExpanded);
     });
-    if (widget.onExpansionChanged != null) widget.onExpansionChanged(_isExpanded);
+    if (widget.onExpansionChanged != null)
+      widget.onExpansionChanged(_isExpanded);
   }
 
   Widget _buildChildren(BuildContext context, Widget child) {
@@ -140,7 +145,10 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile> with Single
               inkwellRadius: widget.inkwellRadius,
               leading: widget.leading,
               title: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead.copyWith(color: titleColor),
+                style: Theme.of(context)
+                    .textTheme
+                    .subhead
+                    .copyWith(color: titleColor),
                 child: widget.title,
               ),
               subtitle: widget.subtitle,

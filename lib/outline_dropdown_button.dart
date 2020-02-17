@@ -46,7 +46,6 @@ class OutlineDropdownButton extends StatefulWidget {
 }
 
 class _OutlineDropdownButtonState extends State<OutlineDropdownButton> {
-
   // OutlineDropdownButton widget builder
   @override
   Widget build(BuildContext context) {

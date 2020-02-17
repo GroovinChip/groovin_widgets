@@ -46,12 +46,10 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   });
 
   @override
-  _OutlineDropdownButtonFormFieldState<T> createState() =>
-      _OutlineDropdownButtonFormFieldState<T>();
+  _OutlineDropdownButtonFormFieldState<T> createState() => _OutlineDropdownButtonFormFieldState<T>();
 }
 
-class _OutlineDropdownButtonFormFieldState<T>
-    extends State<OutlineDropdownButtonFormField<T>> {
+class _OutlineDropdownButtonFormFieldState<T> extends State<OutlineDropdownButtonFormField<T>> {
   /// This widget creates the InputBorder explicitly due to form validation
   /// limitations
   @override
@@ -61,9 +59,7 @@ class _OutlineDropdownButtonFormFieldState<T>
       onSaved: (val) => widget.onSaved,
       validator: widget.validator,
       builder: (FormFieldState<T> state) {
-        final decoration = widget.decoration.copyWith(
-          errorText: state.hasError ? state.errorText : null
-        );
+        final decoration = widget.decoration.copyWith(errorText: state.hasError ? state.errorText : null);
 
         return InputDecorator(
           decoration: decoration,

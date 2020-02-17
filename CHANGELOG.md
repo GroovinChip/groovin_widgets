@@ -1,3 +1,8 @@
+## [1.4.3] - 02/17/2020
+* Addresses pub health suggestions
+* Updates environment SDK
+* Updates gitignore
+
 ## [1.4.2] - 05/20/2019
 * Addresses pub health suggestions
 

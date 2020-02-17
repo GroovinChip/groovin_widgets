@@ -96,7 +96,7 @@ class ListTileTheme extends InheritedWidget {
   /// ListTileTheme theme = ListTileTheme.of(context);
   /// ```
   static ListTileTheme of(BuildContext context) {
-    final ListTileTheme result = context.inheritFromWidgetOfExactType(ListTileTheme);
+    final ListTileTheme result = context.dependOnInheritedWidgetOfExactType<ListTileTheme>();
     return result ?? const ListTileTheme();
   }
 
@@ -230,8 +230,7 @@ class GroovinListTile extends StatelessWidget {
   /// See also:
   ///
   /// * [Divider], which you can use to obtain this effect manually.
-  static Iterable<Widget> divideTiles(
-      {BuildContext context, @required Iterable<Widget> tiles, Color color}) sync* {
+  static Iterable<Widget> divideTiles({BuildContext context, @required Iterable<Widget> tiles, Color color}) sync* {
     assert(tiles != null);
     assert(color != null || context != null);
 
@@ -300,27 +299,23 @@ class GroovinListTile extends StatelessWidget {
     if (tileTheme != null) {
       switch (tileTheme.style) {
         case GroovinListTileStyle.drawer:
-          style = theme.textTheme.body2;
+          style = theme.textTheme.bodyText1;
           break;
         case GroovinListTileStyle.list:
-          style = theme.textTheme.subhead;
+          style = theme.textTheme.subtitle1;
           break;
       }
     } else {
-      style = theme.textTheme.subhead;
+      style = theme.textTheme.subtitle1;
     }
     final Color color = _textColor(theme, tileTheme, style.color);
-    return _isDenseLayout(tileTheme)
-        ? style.copyWith(fontSize: 13.0, color: color)
-        : style.copyWith(color: color);
+    return _isDenseLayout(tileTheme) ? style.copyWith(fontSize: 13.0, color: color) : style.copyWith(color: color);
   }
 
   TextStyle _subtitleTextStyle(ThemeData theme, ListTileTheme tileTheme) {
-    final TextStyle style = theme.textTheme.body1;
+    final TextStyle style = theme.textTheme.bodyText2;
     final Color color = _textColor(theme, tileTheme, theme.textTheme.caption.color);
-    return _isDenseLayout(tileTheme)
-        ? style.copyWith(color: color, fontSize: 12.0)
-        : style.copyWith(color: color);
+    return _isDenseLayout(tileTheme) ? style.copyWith(color: color, fontSize: 12.0) : style.copyWith(color: color);
   }
 
   @override
@@ -330,8 +325,7 @@ class GroovinListTile extends StatelessWidget {
     final ListTileTheme tileTheme = ListTileTheme.of(context);
 
     IconThemeData iconThemeData;
-    if (leading != null || trailing != null)
-      iconThemeData = IconThemeData(color: _iconColor(theme, tileTheme));
+    if (leading != null || trailing != null) iconThemeData = IconThemeData(color: _iconColor(theme, tileTheme));
 
     Widget leadingIcon;
     if (leading != null) {
@@ -342,8 +336,8 @@ class GroovinListTile extends StatelessWidget {
     }
 
     final TextStyle titleStyle = _titleTextStyle(theme, tileTheme);
-    final Widget titleText = AnimatedDefaultTextStyle(
-        style: titleStyle, duration: kThemeChangeDuration, child: title ?? const SizedBox());
+    final Widget titleText =
+        AnimatedDefaultTextStyle(style: titleStyle, duration: kThemeChangeDuration, child: title ?? const SizedBox());
 
     Widget subtitleText;
     TextStyle subtitleStyle;
@@ -737,22 +731,16 @@ class _RenderGroovinListTile extends RenderBox {
 
   @override
   double computeMinIntrinsicWidth(double height) {
-    final double leadingWidth = leading != null
-        ? math.max(leading.getMinIntrinsicWidth(height), _minLeadingWidth) + _horizontalTitleGap
-        : 0.0;
-    return leadingWidth +
-        math.max(_minWidth(title, height), _minWidth(subtitle, height)) +
-        _maxWidth(trailing, height);
+    final double leadingWidth =
+        leading != null ? math.max(leading.getMinIntrinsicWidth(height), _minLeadingWidth) + _horizontalTitleGap : 0.0;
+    return leadingWidth + math.max(_minWidth(title, height), _minWidth(subtitle, height)) + _maxWidth(trailing, height);
   }
 
   @override
   double computeMaxIntrinsicWidth(double height) {
-    final double leadingWidth = leading != null
-        ? math.max(leading.getMaxIntrinsicWidth(height), _minLeadingWidth) + _horizontalTitleGap
-        : 0.0;
-    return leadingWidth +
-        math.max(_maxWidth(title, height), _maxWidth(subtitle, height)) +
-        _maxWidth(trailing, height);
+    final double leadingWidth =
+        leading != null ? math.max(leading.getMaxIntrinsicWidth(height), _minLeadingWidth) + _horizontalTitleGap : 0.0;
+    return leadingWidth + math.max(_maxWidth(title, height), _maxWidth(subtitle, height)) + _maxWidth(trailing, height);
   }
 
   double get _defaultTileHeight {
@@ -767,8 +755,8 @@ class _RenderGroovinListTile extends RenderBox {
 
   @override
   double computeMinIntrinsicHeight(double width) {
-    return math.max(_defaultTileHeight,
-        title.getMinIntrinsicHeight(width) + (subtitle?.getMinIntrinsicHeight(width) ?? 0.0));
+    return math.max(
+        _defaultTileHeight, title.getMinIntrinsicHeight(width) + (subtitle?.getMinIntrinsicHeight(width) ?? 0.0));
   }
 
   @override
@@ -813,11 +801,9 @@ class _RenderGroovinListTile extends RenderBox {
     final Size leadingSize = _layoutBox(leading, looseConstraints);
     final Size trailingSize = _layoutBox(trailing, looseConstraints);
 
-    final double titleStart =
-        hasLeading ? math.max(_minLeadingWidth, leadingSize.width) + _horizontalTitleGap : 0.0;
+    final double titleStart = hasLeading ? math.max(_minLeadingWidth, leadingSize.width) + _horizontalTitleGap : 0.0;
     final BoxConstraints textConstraints = looseConstraints.tighten(
-      width:
-          tileWidth - titleStart - (hasTrailing ? trailingSize.width + _horizontalTitleGap : 0.0),
+      width: tileWidth - titleStart - (hasTrailing ? trailingSize.width + _horizontalTitleGap : 0.0),
     );
     final Size titleSize = _layoutBox(title, textConstraints);
     final Size subtitleSize = _layoutBox(subtitle, textConstraints);
@@ -858,8 +844,7 @@ class _RenderGroovinListTile extends RenderBox {
       // If the title or subtitle overflow tileHeight then punt: title
       // and subtitle are arranged in a column, tileHeight = column height plus
       // _minVerticalPadding on top and bottom.
-      if (titleY < _minVerticalPadding ||
-          (subtitleY + subtitleSize.height + _minVerticalPadding) > tileHeight) {
+      if (titleY < _minVerticalPadding || (subtitleY + subtitleSize.height + _minVerticalPadding) > tileHeight) {
         tileHeight = titleSize.height + subtitleSize.height + 2.0 * _minVerticalPadding;
         titleY = _minVerticalPadding;
         subtitleY = titleSize.height + _minVerticalPadding;
@@ -884,8 +869,7 @@ class _RenderGroovinListTile extends RenderBox {
           if (hasLeading) _positionBox(leading, Offset(0.0, leadingY));
           _positionBox(title, Offset(titleStart, titleY));
           if (hasSubtitle) _positionBox(subtitle, Offset(titleStart, subtitleY));
-          if (hasTrailing)
-            _positionBox(trailing, Offset(tileWidth - trailingSize.width, trailingY));
+          if (hasTrailing) _positionBox(trailing, Offset(tileWidth - trailingSize.width, trailingY));
           break;
         }
     }

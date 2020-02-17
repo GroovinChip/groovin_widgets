@@ -71,9 +71,7 @@ class GroovinExpansionTile extends StatefulWidget {
   _GroovinExpansionTileState createState() => _GroovinExpansionTileState();
 }
 
-class _GroovinExpansionTileState extends State<GroovinExpansionTile>
-    with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeOutTween = CurveTween(curve: Curves.easeOut);
+class _GroovinExpansionTileState extends State<GroovinExpansionTile> with SingleTickerProviderStateMixin {
   static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
 
@@ -85,10 +83,8 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
   AnimationController _controller;
   Animation<double> _iconTurns;
   Animation<double> _heightFactor;
-  Animation<Color> _borderColor;
   Animation<Color> _headerColor;
   Animation<Color> _iconColor;
-  Animation<Color> _backgroundColor;
 
   bool _isExpanded = false;
 
@@ -98,10 +94,8 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     _controller = AnimationController(duration: _kExpand, vsync: this);
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-    _borderColor = _controller.drive(_borderColorTween.chain(_easeOutTween));
     _headerColor = _controller.drive(_headerColorTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
-    _backgroundColor = _controller.drive(_backgroundColorTween.chain(_easeOutTween));
 
     _isExpanded = PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
     if (_isExpanded) _controller.value = 1.0;
@@ -132,7 +126,6 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
   }
 
   Widget _buildChildren(BuildContext context, Widget child) {
-    final Color borderSideColor = _borderColor.value ?? Colors.transparent;
     final Color titleColor = _headerColor.value;
 
     return Container(
@@ -147,7 +140,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
               inkwellRadius: widget.inkwellRadius,
               leading: widget.leading,
               title: DefaultTextStyle(
-                style: Theme.of(context).textTheme.subhead.copyWith(color: titleColor),
+                style: Theme.of(context).textTheme.subtitle1.copyWith(color: titleColor),
                 child: widget.title,
               ),
               subtitle: widget.subtitle,
@@ -177,7 +170,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     final ThemeData theme = Theme.of(context);
     _borderColorTween..end = theme.dividerColor;
     _headerColorTween
-      ..begin = theme.textTheme.subhead.color
+      ..begin = theme.textTheme.subtitle1.color
       ..end = theme.accentColor;
     _iconColorTween
       ..begin = theme.unselectedWidgetColor

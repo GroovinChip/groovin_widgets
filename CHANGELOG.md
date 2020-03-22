@@ -1,3 +1,6 @@
+## [1.5.0] - 03/22/2020
+* Introduces the AvatarBackButton widget
+
 ## [1.4.3 - 1.4.5] - 02/17/2020
 * Addresses pub health suggestions
 * Updates environment SDK

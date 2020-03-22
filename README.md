@@ -8,6 +8,7 @@ This package currently contains the following widgets:
 - OutlineDropdownButtonFormField
 - GroovinExpansionTile
 - SplitColorBackground
+- AvatarBackButton
 
 ## ModalDrawerHandle
 
@@ -172,8 +173,12 @@ final FloatingActionButtonLocation floatingActionButtonLocation;
 final BottomNavigationBar bottomNavigationBar;
 ```
 
-## Getting Started with Flutter
+## AvatarBackButton
 
-For help getting started with Flutter, view our online [documentation](https://flutter.io/).
+This widget creates a back button with a user Avatar next to it, like WhatsApp does.
+Given that user avatar's generally are retrieved via network calls this widget takes a String URL as the avatar and
+passes it to a NetworkImage widget.
 
-For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+Screenshots:
+![Alt text](https://i.imgur.com/QPVe1V2.png)
+![Alt text](https://i.imgur.com/N5hP4Wd.png)

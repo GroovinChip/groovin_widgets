@@ -1,5 +1,6 @@
 ## [1.5.0] - 03/22/2020
 * Introduces the AvatarBackButton widget
+* 1.5.0+1: run `flutter format` on `avatar_back_button.dart`
 
 ## [1.4.3 - 1.4.5] - 02/17/2020
 * Addresses pub health suggestions

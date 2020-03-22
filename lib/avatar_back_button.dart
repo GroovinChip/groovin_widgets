@@ -20,7 +20,9 @@ class AvatarBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onPressed,
-      customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+      customBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[

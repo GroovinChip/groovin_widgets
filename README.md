@@ -1,4 +1,5 @@
 # groovin_widgets
+![Pub Version](https://img.shields.io/pub/v/groovin_widgets?style=plastic)
 
 A Flutter package containing widgets created by GroovinChip.
 

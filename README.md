@@ -29,13 +29,19 @@ Every aspect of the drawer handle can be customized:
 - the MainAxisAlignment of the Row it sits in
 - the BorderRadius of all four corners
 
-The recommended use of this widget is within the showModalBottomSheet builder (or the showRoundedModalBottomSheet builder, if you prefer the package by Gildaswise like I do).
+The recommended use of this widget is within the showModalBottomSheet builder.
 
 The ideal use in this case is to return a Container that returns a Column, and the ModalDrawerHandle widget should be the first widget in the Column. I personally wrap the ModalDrawerHandle with a Padding that has a const EdgeInsets.all(8.0). Below is an example of this:
 
 ```
-showRoundedModalBottomSheet(
+showModalBottomSheet(
   context: context,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(8),
+      topRight: Radius.circular(8),
+    ),
+  ),
   builder: (builder) {
     return Container(
 	  child: Column(

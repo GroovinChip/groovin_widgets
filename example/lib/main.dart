@@ -8,24 +8,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'GroovinWidgets demo',
       theme: ThemeData(
         primaryColor: Colors.indigo,
         accentColor: Colors.indigoAccent,
         //brightness: Brightness.dark
       ),
-      home: MyHomePage(),
+      home: GroovinWidgetsDemo(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class GroovinWidgetsDemo extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _GroovinWidgetsDemoState createState() => _GroovinWidgetsDemoState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
   var value;
   bool isExpanded = false;
 
@@ -101,7 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.white,
                     ),
                   ),
-                  title: Text("Test Person", style: TextStyle(color: Colors.black),),
+                  title: Text(
+                    "Test Person",
+                    style: TextStyle(color: Colors.black),
+                  ),
                   subtitle: Text("123-456-7890"),
                   onExpansionChanged: (value) {
                     setState(() {
@@ -111,9 +114,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   inkwellRadius: !isExpanded
                       ? BorderRadius.all(Radius.circular(8.0))
                       : BorderRadius.only(
-                    topRight: Radius.circular(8.0),
-                    topLeft: Radius.circular(8.0),
-                  ),
+                          topRight: Radius.circular(8.0),
+                          topLeft: Radius.circular(8.0),
+                        ),
                   children: <Widget>[
                     ClipRRect(
                       borderRadius: BorderRadius.only(
@@ -165,6 +168,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.drag_handle),
         onPressed: () => showModalBottomSheet(
           context: context,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+            ),
+          ),
           builder: (builder) {
             return Container(
               height: 250.0,

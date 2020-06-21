@@ -1,6 +1,6 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:groovin_widgets/groovin_list_tile.dart';
+import 'package:flutter/widgets.dart';
+import 'package:groovin_widgets/src/groovin_list_tile.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
@@ -147,7 +147,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
               title: DefaultTextStyle(
                 style: Theme.of(context)
                     .textTheme
-                    .subhead
+                    .subtitle1
                     .copyWith(color: titleColor),
                 child: widget.title,
               ),
@@ -178,7 +178,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     final ThemeData theme = Theme.of(context);
     _borderColorTween..end = theme.dividerColor;
     _headerColorTween
-      ..begin = theme.textTheme.subhead.color
+      ..begin = theme.textTheme.subtitle1.color
       ..end = theme.accentColor;
     _iconColorTween
       ..begin = theme.unselectedWidgetColor

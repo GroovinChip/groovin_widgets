@@ -1,15 +1,16 @@
 name: groovin_widgets
 description: A Flutter widget library containing custom widgets created and edited by GroovinChip.
-version: 1.5.0+2
+version: 1.5.0+3
 homepage: https://github.com/GroovinChip/GroovinWidgets
 #---
-# Release commands:
-# 1) flutter packages pub publish --dry-run
-# 2) flutter packages pub publish
+# Publishing steps:
+# 1) pana --scores --no-warning
+# 2) flutter packages pub publish --dry-run
+# 3) flutter packages pub publish
 #---
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:

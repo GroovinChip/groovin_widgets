@@ -1,9 +1,9 @@
 import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 enum GroovinListTileStyle {
   /// Use a title font that's appropriate for a [GroovinListTile] in a list.
@@ -13,21 +13,22 @@ enum GroovinListTileStyle {
   drawer,
 }
 
-/// An inherited widget that defines color and style parameters for [GroovinListTile]s
+/// An inherited widget that defines color and style parameters for [ListTile]s
 /// in this widget's subtree.
 ///
-/// Values specified here are used for [GroovinListTile] properties that are not given
+/// Values specified here are used for [ListTile] properties that are not given
 /// an explicit non-null value.
 ///
 /// The [Drawer] widget specifies a tile theme for its children which sets
-/// [style] to [GroovinListTileStyle.drawer].
-class ListTileTheme extends InheritedWidget {
+/// [style] to [ListTileStyle.drawer].
+class ListTileTheme extends InheritedTheme {
   /// Creates a list tile theme that controls the color and style parameters for
-  /// [GroovinListTile]s.
+  /// [ListTile]s.
   const ListTileTheme({
     Key key,
     this.dense = false,
-    this.style = GroovinListTileStyle.list,
+    this.shape,
+    this.style = ListTileStyle.list,
     this.selectedColor,
     this.iconColor,
     this.textColor,
@@ -36,13 +37,14 @@ class ListTileTheme extends InheritedWidget {
   }) : super(key: key, child: child);
 
   /// Creates a list tile theme that controls the color and style parameters for
-  /// [GroovinListTile]s, and merges in the current list tile theme, if any.
+  /// [ListTile]s, and merges in the current list tile theme, if any.
   ///
   /// The [child] argument must not be null.
   static Widget merge({
     Key key,
     bool dense,
-    GroovinListTileStyle style,
+    ShapeBorder shape,
+    ListTileStyle style,
     Color selectedColor,
     Color iconColor,
     Color textColor,
@@ -56,6 +58,7 @@ class ListTileTheme extends InheritedWidget {
         return ListTileTheme(
           key: key,
           dense: dense ?? parent.dense,
+          shape: shape ?? parent.shape,
           style: style ?? parent.style,
           selectedColor: selectedColor ?? parent.selectedColor,
           iconColor: iconColor ?? parent.iconColor,
@@ -67,24 +70,27 @@ class ListTileTheme extends InheritedWidget {
     );
   }
 
-  /// If true then [GroovinListTile]s will have the vertically dense layout.
+  /// If true then [ListTile]s will have the vertically dense layout.
   final bool dense;
 
-  /// If specified, [style] defines the font used for [GroovinListTile] titles.
-  final GroovinListTileStyle style;
+  /// If specified, [shape] defines the shape of the [ListTile]'s [InkWell] border.
+  final ShapeBorder shape;
 
-  /// If specified, the color used for icons and text when a [GroovinListTile] is selected.
+  /// If specified, [style] defines the font used for [ListTile] titles.
+  final ListTileStyle style;
+
+  /// If specified, the color used for icons and text when a [ListTile] is selected.
   final Color selectedColor;
 
-  /// If specified, the icon color used for enabled [GroovinListTile]s that are not selected.
+  /// If specified, the icon color used for enabled [ListTile]s that are not selected.
   final Color iconColor;
 
-  /// If specified, the text color used for enabled [GroovinListTile]s that are not selected.
+  /// If specified, the text color used for enabled [ListTile]s that are not selected.
   final Color textColor;
 
   /// The tile's internal padding.
   ///
-  /// Insets a [GroovinListTile]'s contents: its [leading], [title], [subtitle],
+  /// Insets a [ListTile]'s contents: its [leading], [title], [subtitle],
   /// and [trailing] widgets.
   final EdgeInsetsGeometry contentPadding;
 
@@ -102,8 +108,27 @@ class ListTileTheme extends InheritedWidget {
   }
 
   @override
+  Widget wrap(BuildContext context, Widget child) {
+    final ListTileTheme ancestorTheme =
+        context.findAncestorWidgetOfExactType<ListTileTheme>();
+    return identical(this, ancestorTheme)
+        ? child
+        : ListTileTheme(
+            dense: dense,
+            shape: shape,
+            style: style,
+            selectedColor: selectedColor,
+            iconColor: iconColor,
+            textColor: textColor,
+            contentPadding: contentPadding,
+            child: child,
+          );
+  }
+
+  @override
   bool updateShouldNotify(ListTileTheme oldWidget) {
     return dense != oldWidget.dense ||
+        shape != oldWidget.shape ||
         style != oldWidget.style ||
         selectedColor != oldWidget.selectedColor ||
         iconColor != oldWidget.iconColor ||
@@ -155,6 +180,13 @@ class GroovinListTile extends StatelessWidget {
     this.onTap,
     this.onLongPress,
     this.selected = false,
+    this.visualDensity,
+    this.shape,
+    this.mouseCursor,
+    this.focusColor,
+    this.hoverColor,
+    this.focusNode,
+    this.autofocus,
   })  : assert(isThreeLine != null),
         assert(enabled != null),
         assert(selected != null),
@@ -171,19 +203,35 @@ class GroovinListTile extends StatelessWidget {
   /// The primary content of the list tile.
   ///
   /// Typically a [Text] widget.
+  ///
+  /// This should not wrap.
   final Widget title;
 
   /// Additional content displayed below the title.
   ///
   /// Typically a [Text] widget.
+  ///
+  /// If [isThreeLine] is false, this should not wrap.
+  ///
+  /// If [isThreeLine] is true, this should be configured to take a maximum of
+  /// two lines.
   final Widget subtitle;
 
   /// A widget to display after the title.
   ///
   /// Typically an [Icon] widget.
+  ///
+  /// To show right-aligned metadata (assuming left-to-right reading order;
+  /// left-aligned for right-to-left reading order), consider using a [Row] with
+  /// [MainAxisAlign.baseline] alignment whose first item is [Expanded] and
+  /// whose second child is the metadata text, instead of using the [trailing]
+  /// property.
   final Widget trailing;
 
   /// Whether this list tile is intended to display three lines of text.
+  ///
+  /// If true, then [subtitle] must be non-null (since it is expected to give
+  /// the second and third lines of text).
   ///
   /// If false, the list tile is treated as having one line if the subtitle is
   /// null and treated as having two lines if the subtitle is non-null.
@@ -192,11 +240,32 @@ class GroovinListTile extends StatelessWidget {
   /// Whether this list tile is part of a vertically dense list.
   ///
   /// If this property is null then its value is based on [ListTileTheme.dense].
+  ///
+  /// Dense list tiles default to a smaller height.
   final bool dense;
+
+  /// Defines how compact the list tile's layout will be.
+  ///
+  /// {@macro flutter.material.themedata.visualDensity}
+  ///
+  /// See also:
+  ///
+  ///  * [ThemeData.visualDensity], which specifies the [density] for all widgets
+  ///    within a [Theme].
+  final VisualDensity visualDensity;
+
+  /// The shape of the tile's [InkWell].
+  ///
+  /// Defines the tile's [InkWell.customBorder].
+  ///
+  /// If this property is null then [ThemeData.cardTheme.shape] is used.
+  /// If that's null then the shape will be a [RoundedRectangleBorder] with a
+  /// circular corner radius of 4.0.
+  final ShapeBorder shape;
 
   /// The tile's internal padding.
   ///
-  /// Insets a [GroovinListTile]'s contents: its [leading], [title], [subtitle],
+  /// Insets a [ListTile]'s contents: its [leading], [title], [subtitle],
   /// and [trailing] widgets.
   ///
   /// If null, `EdgeInsets.symmetric(horizontal: 16.0)` is used.
@@ -219,18 +288,42 @@ class GroovinListTile extends StatelessWidget {
   /// Inoperative if [enabled] is false.
   final GestureLongPressCallback onLongPress;
 
+  /// The cursor for a mouse pointer when it enters or is hovering over the
+  /// widget.
+  ///
+  /// If [mouseCursor] is a [MaterialStateProperty<MouseCursor>],
+  /// [MaterialStateProperty.resolve] is used for the following [MaterialState]s:
+  ///
+  ///  * [MaterialState.selected].
+  ///  * [MaterialState.disabled].
+  ///
+  /// If this property is null, [MaterialStateMouseCursor.clickable] will be used.
+  final MouseCursor mouseCursor;
+
   /// If this tile is also [enabled] then icons and text are rendered with the same color.
   ///
   /// By default the selected color is the theme's primary color. The selected color
   /// can be overridden with a [ListTileTheme].
   final bool selected;
 
+  /// The color for the tile's [Material] when it has the input focus.
+  final Color focusColor;
+
+  /// The color for the tile's [Material] when a pointer is hovering over it.
+  final Color hoverColor;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode focusNode;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
   /// Add a one pixel border in between each tile. If color isn't specified the
   /// [ThemeData.dividerColor] of the context's [Theme] is used.
   ///
   /// See also:
   ///
-  /// * [Divider], which you can use to obtain this effect manually.
+  ///  * [Divider], which you can use to obtain this effect manually.
   static Iterable<Widget> divideTiles(
       {BuildContext context,
       @required Iterable<Widget> tiles,
@@ -300,22 +393,22 @@ class GroovinListTile extends StatelessWidget {
   }
 
   bool _isDenseLayout(ListTileTheme tileTheme) {
-    return dense != null ? dense : (tileTheme?.dense ?? false);
+    return dense ?? tileTheme?.dense ?? false;
   }
 
   TextStyle _titleTextStyle(ThemeData theme, ListTileTheme tileTheme) {
     TextStyle style;
     if (tileTheme != null) {
       switch (tileTheme.style) {
-        case GroovinListTileStyle.drawer:
-          style = theme.textTheme.body2;
+        case ListTileStyle.drawer:
+          style = theme.textTheme.bodyText1;
           break;
-        case GroovinListTileStyle.list:
-          style = theme.textTheme.subhead;
+        case ListTileStyle.list:
+          style = theme.textTheme.subtitle1;
           break;
       }
     } else {
-      style = theme.textTheme.subhead;
+      style = theme.textTheme.subtitle1;
     }
     final Color color = _textColor(theme, tileTheme, style.color);
     return _isDenseLayout(tileTheme)
@@ -324,7 +417,7 @@ class GroovinListTile extends StatelessWidget {
   }
 
   TextStyle _subtitleTextStyle(ThemeData theme, ListTileTheme tileTheme) {
-    final TextStyle style = theme.textTheme.body1;
+    final TextStyle style = theme.textTheme.bodyText2;
     final Color color =
         _textColor(theme, tileTheme, theme.textTheme.caption.color);
     return _isDenseLayout(tileTheme)
@@ -352,9 +445,10 @@ class GroovinListTile extends StatelessWidget {
 
     final TextStyle titleStyle = _titleTextStyle(theme, tileTheme);
     final Widget titleText = AnimatedDefaultTextStyle(
-        style: titleStyle,
-        duration: kThemeChangeDuration,
-        child: title ?? const SizedBox());
+      style: titleStyle,
+      duration: kThemeChangeDuration,
+      child: title ?? const SizedBox(),
+    );
 
     Widget subtitleText;
     TextStyle subtitleStyle;
@@ -383,10 +477,25 @@ class GroovinListTile extends StatelessWidget {
             tileTheme?.contentPadding?.resolve(textDirection) ??
             _defaultContentPadding;
 
+    final MouseCursor effectiveMouseCursor =
+        MaterialStateProperty.resolveAs<MouseCursor>(
+      mouseCursor ?? MaterialStateMouseCursor.clickable,
+      <MaterialState>{
+        if (!enabled) MaterialState.disabled,
+        if (selected) MaterialState.selected,
+      },
+    );
+
     return InkWell(
-      borderRadius: inkwellRadius,
+      customBorder: shape ?? tileTheme.shape,
       onTap: enabled ? onTap : null,
       onLongPress: enabled ? onLongPress : null,
+      mouseCursor: effectiveMouseCursor,
+      canRequestFocus: enabled,
+      focusNode: focusNode,
+      focusColor: focusColor,
+      hoverColor: hoverColor,
+      autofocus: autofocus,
       child: Semantics(
         selected: selected,
         enabled: enabled,
@@ -400,6 +509,7 @@ class GroovinListTile extends StatelessWidget {
             subtitle: subtitleText,
             trailing: trailingIcon,
             isDense: _isDenseLayout(tileTheme),
+            visualDensity: visualDensity ?? theme.visualDensity,
             isThreeLine: isThreeLine,
             textDirection: textDirection,
             titleBaselineType: titleStyle.textBaseline,
@@ -428,11 +538,13 @@ class _GroovinListTile extends RenderObjectWidget {
     this.trailing,
     @required this.isThreeLine,
     @required this.isDense,
+    @required this.visualDensity,
     @required this.textDirection,
     @required this.titleBaselineType,
     this.subtitleBaselineType,
   })  : assert(isThreeLine != null),
         assert(isDense != null),
+        assert(visualDensity != null),
         assert(textDirection != null),
         assert(titleBaselineType != null),
         super(key: key);
@@ -443,6 +555,7 @@ class _GroovinListTile extends RenderObjectWidget {
   final Widget trailing;
   final bool isThreeLine;
   final bool isDense;
+  final VisualDensity visualDensity;
   final TextDirection textDirection;
   final TextBaseline titleBaselineType;
   final TextBaseline subtitleBaselineType;
@@ -455,6 +568,7 @@ class _GroovinListTile extends RenderObjectWidget {
     return _RenderGroovinListTile(
       isThreeLine: isThreeLine,
       isDense: isDense,
+      visualDensity: visualDensity,
       textDirection: textDirection,
       titleBaselineType: titleBaselineType,
       subtitleBaselineType: subtitleBaselineType,
@@ -467,6 +581,7 @@ class _GroovinListTile extends RenderObjectWidget {
     renderObject
       ..isThreeLine = isThreeLine
       ..isDense = isDense
+      ..visualDensity = visualDensity
       ..textDirection = textDirection
       ..titleBaselineType = titleBaselineType
       ..subtitleBaselineType = subtitleBaselineType;
@@ -480,10 +595,11 @@ class _GroovinListTileElement extends RenderObjectElement {
   final Map<Element, _ListTileSlot> childToSlot = <Element, _ListTileSlot>{};
 
   @override
-  _GroovinListTile get widget => super.widget;
+  _GroovinListTile get widget => super.widget as _GroovinListTile;
 
   @override
-  _RenderGroovinListTile get renderObject => super.renderObject;
+  _RenderGroovinListTile get renderObject =>
+      super.renderObject as _RenderGroovinListTile;
 
   @override
   void visitChildren(ElementVisitor visitor) {
@@ -497,6 +613,7 @@ class _GroovinListTileElement extends RenderObjectElement {
     final _ListTileSlot slot = childToSlot[child];
     childToSlot.remove(child);
     slotToChild.remove(slot);
+    super.forgetChild(child);
   }
 
   void _mountChild(Widget widget, _ListTileSlot slot) {
@@ -566,7 +683,7 @@ class _GroovinListTileElement extends RenderObjectElement {
     assert(child is RenderBox);
     assert(slotValue is _ListTileSlot);
     final _ListTileSlot slot = slotValue;
-    _updateRenderObject(child, slot);
+    _updateRenderObject(child as RenderBox, slot);
     assert(renderObject.childToSlot.keys.contains(child));
     assert(renderObject.slotToChild.keys.contains(slot));
   }
@@ -589,6 +706,7 @@ class _GroovinListTileElement extends RenderObjectElement {
 class _RenderGroovinListTile extends RenderBox {
   _RenderGroovinListTile({
     @required bool isDense,
+    @required VisualDensity visualDensity,
     @required bool isThreeLine,
     @required TextDirection textDirection,
     @required TextBaseline titleBaselineType,
@@ -598,6 +716,7 @@ class _RenderGroovinListTile extends RenderBox {
         assert(textDirection != null),
         assert(titleBaselineType != null),
         _isDense = isDense,
+        _visualDensity = visualDensity,
         _isThreeLine = isThreeLine,
         _textDirection = textDirection,
         _titleBaselineType = titleBaselineType,
@@ -605,7 +724,7 @@ class _RenderGroovinListTile extends RenderBox {
 
   static const double _minLeadingWidth = 40.0;
   // The horizontal gap between the titles and the leading/trailing widgets
-  static const double _horizontalTitleGap = 16.0;
+  double get _horizontalTitleGap => 16.0 + visualDensity.horizontal * 2.0;
   // The minimum padding on the top and bottom of the title and subtitle widgets.
   static const double _minVerticalPadding = 4.0;
 
@@ -670,6 +789,15 @@ class _RenderGroovinListTile extends RenderBox {
     markNeedsLayout();
   }
 
+  VisualDensity get visualDensity => _visualDensity;
+  VisualDensity _visualDensity;
+  set visualDensity(VisualDensity value) {
+    assert(value != null);
+    if (_visualDensity == value) return;
+    _visualDensity = value;
+    markNeedsLayout();
+  }
+
   bool get isThreeLine => _isThreeLine;
   bool _isThreeLine;
   set isThreeLine(bool value) {
@@ -708,13 +836,13 @@ class _RenderGroovinListTile extends RenderBox {
   @override
   void attach(PipelineOwner owner) {
     super.attach(owner);
-    for (RenderBox child in _children) child.attach(owner);
+    for (final RenderBox child in _children) child.attach(owner);
   }
 
   @override
   void detach() {
     super.detach();
-    for (RenderBox child in _children) child.detach();
+    for (final RenderBox child in _children) child.detach();
   }
 
   @override
@@ -779,17 +907,19 @@ class _RenderGroovinListTile extends RenderBox {
     final bool isTwoLine = !isThreeLine && hasSubtitle;
     final bool isOneLine = !isThreeLine && !hasSubtitle;
 
-    if (isOneLine) return isDense ? 48.0 : 56.0;
-    if (isTwoLine) return isDense ? 64.0 : 72.0;
-    return isDense ? 76.0 : 88.0;
+    final Offset baseDensity = visualDensity.baseSizeAdjustment;
+    if (isOneLine) return (isDense ? 48.0 : 56.0) + baseDensity.dy;
+    if (isTwoLine) return (isDense ? 64.0 : 72.0) + baseDensity.dy;
+    return (isDense ? 76.0 : 88.0) + baseDensity.dy;
   }
 
   @override
   double computeMinIntrinsicHeight(double width) {
     return math.max(
-        _defaultTileHeight,
-        title.getMinIntrinsicHeight(width) +
-            (subtitle?.getMinIntrinsicHeight(width) ?? 0.0));
+      _defaultTileHeight,
+      title.getMinIntrinsicHeight(width) +
+          (subtitle?.getMinIntrinsicHeight(width) ?? 0.0),
+    );
   }
 
   @override
@@ -800,7 +930,7 @@ class _RenderGroovinListTile extends RenderBox {
   @override
   double computeDistanceToActualBaseline(TextBaseline baseline) {
     assert(title != null);
-    final BoxParentData parentData = title.parentData;
+    final BoxParentData parentData = title.parentData as BoxParentData;
     return parentData.offset.dy + title.getDistanceToActualBaseline(baseline);
   }
 
@@ -815,7 +945,7 @@ class _RenderGroovinListTile extends RenderBox {
   }
 
   static void _positionBox(RenderBox box, Offset offset) {
-    final BoxParentData parentData = box.parentData;
+    final BoxParentData parentData = box.parentData as BoxParentData;
     parentData.offset = offset;
   }
 
@@ -823,24 +953,42 @@ class _RenderGroovinListTile extends RenderBox {
   // https://material.io/design/components/lists.html#specs
   @override
   void performLayout() {
+    final BoxConstraints constraints = this.constraints;
     final bool hasLeading = leading != null;
     final bool hasSubtitle = subtitle != null;
     final bool hasTrailing = trailing != null;
     final bool isTwoLine = !isThreeLine && hasSubtitle;
     final bool isOneLine = !isThreeLine && !hasSubtitle;
+    final Offset densityAdjustment = visualDensity.baseSizeAdjustment;
+
+    final BoxConstraints maxIconHeightConstraint = BoxConstraints(
+      // One-line trailing and leading widget heights do not follow
+      // Material specifications, but this sizing is required to adhere
+      // to accessibility requirements for smallest tappable widget.
+      // Two- and three-line trailing widget heights are constrained
+      // properly according to the Material spec.
+      maxHeight: (isDense ? 48.0 : 56.0) + densityAdjustment.dy,
+    );
     final BoxConstraints looseConstraints = constraints.loosen();
+    final BoxConstraints iconConstraints =
+        looseConstraints.enforce(maxIconHeightConstraint);
 
     final double tileWidth = looseConstraints.maxWidth;
-    final Size leadingSize = _layoutBox(leading, looseConstraints);
-    final Size trailingSize = _layoutBox(trailing, looseConstraints);
+    final Size leadingSize = _layoutBox(leading, iconConstraints);
+    final Size trailingSize = _layoutBox(trailing, iconConstraints);
+    assert(tileWidth != leadingSize.width,
+        'Leading widget consumes entire tile width. Please use a sized widget.');
+    assert(tileWidth != trailingSize.width,
+        'Trailing widget consumes entire tile width. Please use a sized widget.');
 
     final double titleStart = hasLeading
         ? math.max(_minLeadingWidth, leadingSize.width) + _horizontalTitleGap
         : 0.0;
+    final double adjustedTrailingWidth = hasTrailing
+        ? math.max(trailingSize.width + _horizontalTitleGap, 32.0)
+        : 0.0;
     final BoxConstraints textConstraints = looseConstraints.tighten(
-      width: tileWidth -
-          titleStart -
-          (hasTrailing ? trailingSize.width + _horizontalTitleGap : 0.0),
+      width: tileWidth - titleStart - adjustedTrailingWidth,
     );
     final Size titleSize = _layoutBox(title, textConstraints);
     final Size subtitleSize = _layoutBox(subtitle, textConstraints);
@@ -857,19 +1005,22 @@ class _RenderGroovinListTile extends RenderBox {
       assert(isOneLine);
     }
 
+    final double defaultTileHeight = _defaultTileHeight;
+
     double tileHeight;
     double titleY;
     double subtitleY;
     if (!hasSubtitle) {
       tileHeight = math.max(
-          _defaultTileHeight, titleSize.height + 2.0 * _minVerticalPadding);
+          defaultTileHeight, titleSize.height + 2.0 * _minVerticalPadding);
       titleY = (tileHeight - titleSize.height) / 2.0;
     } else {
       assert(subtitleBaselineType != null);
       titleY = titleBaseline - _boxBaseline(title, titleBaselineType);
-      subtitleY =
-          subtitleBaseline - _boxBaseline(subtitle, subtitleBaselineType);
-      tileHeight = _defaultTileHeight;
+      subtitleY = subtitleBaseline -
+          _boxBaseline(subtitle, subtitleBaselineType) +
+          visualDensity.vertical * 2.0;
+      tileHeight = defaultTileHeight;
 
       // If the title and subtitle overlap, move the title upwards by half
       // the overlap and the subtitle down by the same amount, and adjust
@@ -893,8 +1044,24 @@ class _RenderGroovinListTile extends RenderBox {
       }
     }
 
-    final double leadingY = (tileHeight - leadingSize.height) / 2.0;
-    final double trailingY = (tileHeight - trailingSize.height) / 2.0;
+    // This attempts to implement the redlines for the vertical position of the
+    // leading and trailing icons on the spec page:
+    //   https://material.io/design/components/lists.html#specs
+    // The interpretation for these redlines is as follows:
+    //  - For large tiles (> 72dp), both leading and trailing controls should be
+    //    a fixed distance from top. As per guidelines this is set to 16dp.
+    //  - For smaller tiles, trailing should always be centered. Leading can be
+    //    centered or closer to the top. It should never be further than 16dp
+    //    to the top.
+    double leadingY;
+    double trailingY;
+    if (tileHeight > 72.0) {
+      leadingY = 16.0;
+      trailingY = 16.0;
+    } else {
+      leadingY = math.min((tileHeight - leadingSize.height) / 2.0, 16.0);
+      trailingY = (tileHeight - trailingSize.height) / 2.0;
+    }
 
     switch (textDirection) {
       case TextDirection.rtl:
@@ -902,10 +1069,9 @@ class _RenderGroovinListTile extends RenderBox {
           if (hasLeading)
             _positionBox(
                 leading, Offset(tileWidth - leadingSize.width, leadingY));
-          final double titleX =
-              hasTrailing ? trailingSize.width + _horizontalTitleGap : 0.0;
-          _positionBox(title, Offset(titleX, titleY));
-          if (hasSubtitle) _positionBox(subtitle, Offset(titleX, subtitleY));
+          _positionBox(title, Offset(adjustedTrailingWidth, titleY));
+          if (hasSubtitle)
+            _positionBox(subtitle, Offset(adjustedTrailingWidth, subtitleY));
           if (hasTrailing) _positionBox(trailing, Offset(0.0, trailingY));
           break;
         }
@@ -931,7 +1097,7 @@ class _RenderGroovinListTile extends RenderBox {
   void paint(PaintingContext context, Offset offset) {
     void doPaint(RenderBox child) {
       if (child != null) {
-        final BoxParentData parentData = child.parentData;
+        final BoxParentData parentData = child.parentData as BoxParentData;
         context.paintChild(child, parentData.offset + offset);
       }
     }
@@ -946,12 +1112,19 @@ class _RenderGroovinListTile extends RenderBox {
   bool hitTestSelf(Offset position) => true;
 
   @override
-  bool hitTestChildren(HitTestResult result, {@required Offset position}) {
+  bool hitTestChildren(BoxHitTestResult result, {@required Offset position}) {
     assert(position != null);
-    for (RenderBox child in _children) {
-      final BoxParentData parentData = child.parentData;
-      if (child.hitTest(result, position: position - parentData.offset))
-        return true;
+    for (final RenderBox child in _children) {
+      final BoxParentData parentData = child.parentData as BoxParentData;
+      final bool isHit = result.addWithPaintOffset(
+        offset: parentData.offset,
+        position: position,
+        hitTest: (BoxHitTestResult result, Offset transformed) {
+          assert(transformed == position - parentData.offset);
+          return child.hitTest(result, position: transformed);
+        },
+      );
+      if (isHit) return true;
     }
     return false;
   }

@@ -5,9 +5,8 @@
   * Update readme
   * Add FUNDING.yml
   * Update example
-* **1.5.0+3 - 06/21/2020**
+* **1.5.0+4 - 06/21/2020**
   * Constrain min Dart SDK to 2.7
-  * Update GroovinListTile to match latest ListTile code
   * Refactor widgets into `/src`
 
 ## [1.4.3 - 1.4.5] - 02/17/2020

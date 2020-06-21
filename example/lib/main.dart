@@ -41,7 +41,8 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             AvatarBackButton(
-              avatar: 'https://pbs.twimg.com/profile_images/1029551388622245898/uqiDZfFz_400x400.jpg',
+              avatar:
+                  'https://pbs.twimg.com/profile_images/1029551388622245898/uqiDZfFz_400x400.jpg',
               onPressed: () => print('tap'),
             ),
             SizedBox(width: 8),
@@ -91,7 +92,8 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
               ),
               child: Material(
                 elevation: 2.0,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 child: GroovinExpansionTile(
                   defaultTrailingIconColor: Colors.indigoAccent,
                   leading: CircleAvatar(
@@ -126,7 +128,8 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                       child: Column(
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                            padding:
+                                const EdgeInsets.only(left: 4.0, right: 4.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[

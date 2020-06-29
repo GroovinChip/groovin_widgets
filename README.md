@@ -1,7 +1,7 @@
 # groovin_widgets
 ![Pub Version](https://img.shields.io/pub/v/groovin_widgets?style=plastic)
 
-A Flutter package containing widgets created by GroovinChip.
+A Flutter package containing widgets and utilities created by GroovinChip.
 
 This package currently contains the following widgets:
 - ModalDrawerHandle
@@ -10,6 +10,11 @@ This package currently contains the following widgets:
 - GroovinExpansionTile
 - SplitColorBackground
 - AvatarBackButton
+
+This package contains the following utilities:
+- The `HexColor` class, which returns a `Color` based on a hex value String
+- The `textLuminance` function, which helps determine the color of a `Text` based on a given background color
+- The `printFormattedJson` function, which prints nicely formatted JSON to the console
 
 ## ModalDrawerHandle
 

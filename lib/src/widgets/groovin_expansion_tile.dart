@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:groovin_widgets/src/groovin_list_tile.dart';
+import 'package:groovin_widgets/src/widgets/groovin_list_tile.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 

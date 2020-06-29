@@ -163,6 +163,40 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(
+                    height: 45,
+                    color: Colors.indigo,
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        'Luminance',
+                        style: TextStyle(
+                          color: textLuminance(Colors.indigo),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 45,
+                    color: Colors.grey.shade300,
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: Text(
+                        'Luminance',
+                        style: TextStyle(
+                          color: textLuminance(Colors.grey.shade300),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

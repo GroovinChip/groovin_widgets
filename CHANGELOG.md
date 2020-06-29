@@ -1,9 +1,9 @@
 ## [1.6.0] - 06/28/2020
 * Introduces `/src/utils`, which contains various small utilities I find useful in my projects. 
 This initial release includes: 
-  ** `color_utils.dart` containing the `HexColor` class and `textLuminance` function
-  ** `json_utils.dart` containing the `printFormattedJson` function
-* refactor `src` to include directories `widgets` and `utils`
+  * `color_utils.dart` containing the `HexColor` class and `textLuminance` function
+  * `json_utils.dart` containing the `printFormattedJson` function
+* Refactor `src` to include directories `widgets` and `utils`
 * Update example app
 
 ## [1.5.0] - 03/22/2020

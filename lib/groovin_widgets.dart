@@ -1,3 +1,5 @@
+/// Technical documentation for `groovin_widgets`
+
 library groovin_widgets;
 
 // Widgets

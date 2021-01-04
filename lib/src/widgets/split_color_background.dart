@@ -1,48 +1,12 @@
 import 'package:flutter/material.dart';
 
-/// This widget enables the replication of designs seen on dribbble, uplabs, and other
-/// design websites that show a header section with one background color, a body section with
-/// a different background color, and rounded corners on the top of the body section.
+/// A widget with header and body sections that each have different background colors.
 ///
-/// This widget operates as a Scaffold who's body is a Column with two Flexible widgets to represent
-/// the header and the body. Various Scaffold properties are exposed to the developer.
+/// Reminiscent of various designs seen on dribbble, uplabs, and other design
+/// websites that show a header section with one background color, a body section
+/// with a different background color, and rounded corners on the top of the
+/// body section.
 class SplitColorBackground extends StatelessWidget {
-  /// Represents the flex property of the Flexible containing the header widget. Defaults to 1.
-  final int headerFlex;
-
-  /// Represents the Widget that will be used as the header
-  final Widget header;
-
-  /// Represents the color for the header widget
-  final Color headerColor;
-
-  /// Represents the flex property of the Flexible containing the body widget. Defaults to 4.
-  final int bodyFlex;
-
-  /// Represents the Widget that will be used as the body
-  final Widget body;
-
-  /// Represents the corner radius for the top left corner of the body
-  final double topLeftCornerRadius;
-
-  /// Represents the corner radius for the top right corner of the body
-  final double topRightCornerRadius;
-
-  /// Represents the color for the body widget
-  final Color bodyColor;
-
-  /// The Scaffold appBar is available for optional use.
-  final AppBar appBar;
-
-  /// The Scaffold FloatingActionButton is available for optional use.
-  final FloatingActionButton floatingActionButton;
-
-  /// The Scaffold FloatingActionButtonLocation is available for optional use.
-  final FloatingActionButtonLocation floatingActionButtonLocation;
-
-  /// The Scaffold BottomNavigationBar is available for optional use.
-  final BottomNavigationBar bottomNavigationBar;
-
   const SplitColorBackground({
     Key key,
     this.headerFlex = 1,
@@ -58,6 +22,50 @@ class SplitColorBackground extends StatelessWidget {
     this.floatingActionButtonLocation,
     this.bottomNavigationBar,
   }) : super(key: key);
+
+  /// The flex property of the [Flexible] containing the header widget.
+  ///
+  /// Defaults to `1`.
+  final int headerFlex;
+
+  /// The widget that will be used as the header
+  final Widget header;
+
+  /// The color for the header widget
+  final Color headerColor;
+
+  /// The flex property of the [Flexible] containing the body widget.
+  ///
+  /// Defaults to `4`.
+  final int bodyFlex;
+
+  /// The widget that will be used as the body
+  final Widget body;
+
+  /// The radius for the top left corner of the body.
+  ///
+  /// Defaults to `10`.
+  final double topLeftCornerRadius;
+
+  /// The radius for the top right corner of the body.
+  ///
+  /// Defaults to `10`.
+  final double topRightCornerRadius;
+
+  /// The color for the body widget
+  final Color bodyColor;
+
+  /// An optional [AppBar]
+  final AppBar appBar;
+
+  /// An optional [FloatingActionButton]
+  final FloatingActionButton floatingActionButton;
+
+  /// An optional [FloatingActionButtonLocation]
+  final FloatingActionButtonLocation floatingActionButtonLocation;
+
+  /// An optional [BottomNavigationBar]
+  final BottomNavigationBar bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {

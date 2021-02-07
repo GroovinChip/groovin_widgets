@@ -6,7 +6,7 @@ class ModalDrawerHandle extends StatelessWidget {
     this.handleRowAlignment = MainAxisAlignment.center,
     this.handleHeight = 5.0,
     this.handleWidth = 25.0,
-    Color handleColor,
+    Color? handleColor,
     this.handleBorderRadius = const BorderRadius.all(
       Radius.circular(10.0),
     ),
@@ -28,7 +28,7 @@ class ModalDrawerHandle extends StatelessWidget {
   /// The color of the handle.
   ///
   /// Defaults to `#EEEEEE`
-  final Color handleColor;
+  final Color? handleColor;
 
   /// The [BorderRadius] of the handle.
   ///

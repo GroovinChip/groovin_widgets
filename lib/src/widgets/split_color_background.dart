@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 /// body section.
 class SplitColorBackground extends StatelessWidget {
   const SplitColorBackground({
-    Key key,
+    Key? key,
     this.headerFlex = 1,
-    @required this.header,
+    required this.header,
     this.headerColor,
     this.bodyFlex = 4,
-    @required this.body,
+    required this.body,
     this.topLeftCornerRadius = 10,
     this.topRightCornerRadius = 10,
     this.bodyColor,
@@ -32,7 +32,7 @@ class SplitColorBackground extends StatelessWidget {
   final Widget header;
 
   /// The color for the header widget
-  final Color headerColor;
+  final Color? headerColor;
 
   /// The flex property of the [Flexible] containing the body widget.
   ///
@@ -53,19 +53,19 @@ class SplitColorBackground extends StatelessWidget {
   final double topRightCornerRadius;
 
   /// The color for the body widget
-  final Color bodyColor;
+  final Color? bodyColor;
 
   /// An optional [AppBar]
-  final AppBar appBar;
+  final AppBar? appBar;
 
   /// An optional [FloatingActionButton]
-  final FloatingActionButton floatingActionButton;
+  final FloatingActionButton? floatingActionButton;
 
   /// An optional [FloatingActionButtonLocation]
-  final FloatingActionButtonLocation floatingActionButtonLocation;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
 
   /// An optional [BottomNavigationBar]
-  final BottomNavigationBar bottomNavigationBar;
+  final BottomNavigationBar? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {

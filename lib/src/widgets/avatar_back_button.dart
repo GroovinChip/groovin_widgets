@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 /// widget takes a String URL as the avatar and passes it to a NetworkImage widget.
 class AvatarBackButton extends StatelessWidget {
   const AvatarBackButton({
-    Key key,
-    this.avatar,
+    Key? key,
+    required this.avatar,
     this.onPressed,
   }) : super(key: key);
 
@@ -15,7 +15,7 @@ class AvatarBackButton extends StatelessWidget {
   final String avatar;
 
   /// This function is called when the button is pressed.
-  final GestureTapCallback onPressed;
+  final GestureTapCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

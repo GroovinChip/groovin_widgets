@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:groovin_widgets/src/widgets/groovin_list_tile.dart';
+
+import 'groovin_list_tile.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
-/// This class represents a slightly more customizable ExpansionTile.
-/// It allows for a subtitle, customizing the BoxDecoration,
-/// and the border radius of the InkWell of the ListTile that
-/// the ExpansionTile creates.
+/// A slightly more customizable [ExpansionTile] widget.
+///
+/// It allows for a subtitle, customizing the [BoxDecoration], and the border
+/// radius of the [InkWell] of the [ListTile] that the [ExpansionTile] creates.
 class GroovinExpansionTile extends StatefulWidget {
   /// Creates a [ListTile] with a trailing button that expands or collapses
   /// the tile to reveal or hide the [children]. The [initiallyExpanded] property must

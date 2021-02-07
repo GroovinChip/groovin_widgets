@@ -1,3 +1,6 @@
+## [1.6.1] - 02/7/2020
+* Minor documentation, readme updates
+
 ## [1.6.0] - 06/28/2020
 * Introduces `/src/utils`, which contains various small utilities I find useful in my projects. 
 This initial release includes: 

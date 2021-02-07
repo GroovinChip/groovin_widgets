@@ -1,30 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// This widget represents a customizable 'handle' that you can add to your
-/// modalBottomSheets
+/// A customizable 'handle' intended for use with modal [BottomSheet] widgets.
 class ModalDrawerHandle extends StatelessWidget {
-  /// Represents the MainAxisAlignment of the Row that contains the handle.
-  /// The default value is MainAxisAlignment.center
-  final MainAxisAlignment handleRowAlignment;
-
-  /// Represents the height of the handle. The default value is 5.0
-  final double handleHeight;
-
-  /// Represents the height of the handle. The default value is 25.0
-  final double handleWidth;
-
-  /// Represents the color of the handle.
-  /// The default value is #EEEEEE
-  final Color handleColor;
-
-  /// Represents the BorderRadius (rounding the corners of the handle).
-  /// The default value is const BorderRadius.all(Radius.circular(10.0)).
-  /// Note that when using a custom BorderRadius, you need to pass in
-  /// a Radius, not a double.
-  final BorderRadius handleBorderRadius;
-
-  /// ModalDrawerHandle constructor.
-  /// The widget is initialized with the default values.
   ModalDrawerHandle({
     this.handleRowAlignment = MainAxisAlignment.center,
     this.handleHeight = 5.0,
@@ -35,7 +12,31 @@ class ModalDrawerHandle extends StatelessWidget {
     ),
   }) : this.handleColor = handleColor ?? Colors.grey[300];
 
-  // ModalDrawerHandle Widget builder
+  /// The MainAxisAlignment of the Row that contains the handle.
+  ///
+  /// Defaults to [MainAxisAlignment.center]
+  final MainAxisAlignment handleRowAlignment;
+
+  /// The height of the handle. Defaults to `5.0`.
+  final double handleHeight;
+
+  /// The height of the handle.
+  ///
+  /// Defaults to `25.0`
+  final double handleWidth;
+
+  /// The color of the handle.
+  ///
+  /// Defaults to `#EEEEEE`
+  final Color handleColor;
+
+  /// The [BorderRadius] of the handle.
+  ///
+  /// Best used for rounding the corners of the handle. Defaults to
+  /// `const BorderRadius.all(Radius.circular(10.0))`. Note that when using a
+  /// custom [BorderRadius], you need to pass in a [Radius], not a double.
+  final BorderRadius handleBorderRadius;
+
   @override
   Widget build(BuildContext context) {
     return Row(

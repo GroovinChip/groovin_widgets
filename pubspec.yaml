@@ -4,7 +4,7 @@ version: 1.6.1
 homepage: https://github.com/GroovinChip/GroovinWidgets
 #---
 # Publishing steps:
-# 1) pana --scores --no-warning
+# 1) pana --no-warning
 # 2) flutter packages pub publish --dry-run
 # 3) flutter packages pub publish
 #---

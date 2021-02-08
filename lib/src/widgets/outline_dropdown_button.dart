@@ -35,15 +35,15 @@ class OutlineDropdownButton extends StatefulWidget {
   /// ```
   final InputDecoration inputDecoration;
 
-  final Widget disabledHint;
+  final Widget? disabledHint;
   final int elevation;
-  final Widget hint;
+  final Widget? hint;
   final double iconSize;
   final bool isDense;
   final bool isExpanded;
-  final List<DropdownMenuItem> items;
-  final ValueChanged onChanged;
-  final TextStyle style;
+  final List<DropdownMenuItem>? items;
+  final ValueChanged? onChanged;
+  final TextStyle? style;
   final value;
 
   @override

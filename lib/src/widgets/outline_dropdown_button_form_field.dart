@@ -30,21 +30,21 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   });
 
   // These properties correspond to the existing properties of a DropdownButton
-  final Widget disabledHint;
+  final Widget? disabledHint;
   final int elevation;
-  final Widget hint;
+  final Widget? hint;
   final double iconSize;
   final bool isDense;
   final bool isExpanded;
-  final TextStyle style;
+  final TextStyle? style;
   final value;
   final InputDecoration decoration;
 
   // These properties are unique to this widget
-  final List<DropdownMenuItem<T>> items;
-  final ValueChanged<T> onChanged;
-  final FormFieldValidator<T> validator;
-  final FormFieldSetter<T> onSaved;
+  final List<DropdownMenuItem<T>>? items;
+  final ValueChanged<T?>? onChanged;
+  final FormFieldValidator<T>? validator;
+  final FormFieldSetter<T>? onSaved;
 
   @override
   _OutlineDropdownButtonFormFieldState<T> createState() =>
@@ -75,9 +75,9 @@ class _OutlineDropdownButtonFormFieldState<T>
                 items: widget.items,
                 style: widget.style,
                 value: widget.value,
-                onChanged: (T newValue) {
+                onChanged: (T? newValue) {
                   state.didChange(newValue);
-                  widget.onChanged(newValue);
+                  widget.onChanged!(newValue);
                 },
               ),
             ),

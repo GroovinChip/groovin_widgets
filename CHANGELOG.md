@@ -1,3 +1,7 @@
+## [2.0.0-nullsafety.1]
+* Update example to Android Embedding API v2, AndroidX
+* Update example to support macOS and web
+
 ## [2.0.0-nullsafety.0]
 * Null safety pre-release
 * Update readme

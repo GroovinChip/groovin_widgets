@@ -11,3 +11,4 @@ ios/Runner/GeneratedPluginRegistrant.*
 pubspec.lock
 .fvm
 doc
+*.iml

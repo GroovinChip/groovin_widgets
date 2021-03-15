@@ -16,8 +16,8 @@ This package also contains the following utilities:
 - The `textLuminance` function, which helps determine the color of a `Text` based on a given background color
 - The `printFormattedJson` function, which prints nicely formatted JSON to the console
 
-## ModalDrawerHandle
-
+<details>
+<summary>ModalDrawerHandle</summary>
 ModalDrawerHandle allows you to add a highly customizable drawer handle widget to your modalBottomSheets.
 
 Sample image:
@@ -77,8 +77,10 @@ By default, the ModalDrawerHandle is initialized with the following properties:
 ```
 
 As such, developers can pass in any or all of their own custom values to the constructor as they choose.
+</details>
 
-## OutlineDropdownButton
+<details>
+<summary>OutlineDropdownButton</summary>
 OutlineDropdownButton is a standard DropdownButton with one additional feature: the ability to wrap it in a border.
 Every property that you'd expect to customize about a DropdownButton is available to the developer, and the InputDecoration
 that the OutlineDropdownButton uses is also fully customizable.
@@ -107,8 +109,10 @@ By default, OutlineDropdownButton is initialized with the following properties:
 A default OutlineDropdownButton will look as follows:
 
 ![Alt Text](https://i.imgur.com/7Hjg3YJ.png)
+</details>
 
-## OutlineDropdownButtonFormField
+<details>
+<summary>OutlineDropdownButtonFormField</summary>
 OutlineDropdownButtonFormField is similar to OutlineDropdownButton but is optimized for
 Forms. The additional properties are:
 
@@ -121,8 +125,10 @@ final FormFieldSetter<T> onSaved;
 
 This widget builds the InputDecoration explicitly in the widget rather than the constructor due to
 form validation limitations. However, the decoration is open for customization.
+</details>
 
-## GroovinExpansionTile
+<details>
+<summary>GroovinExpansionTile</summary>
 This widget is a modified Expansion tile that allows for more customization over its appearance.
 You can customize the BoxDecoration of the ExpansionTile so you can remove the lines that appear
 above and below it when expanded, and so on.
@@ -141,8 +147,10 @@ Example images:
 ![Alt text](https://i.imgur.com/axrlXGB.png)
 - Wrapped Material with 2.0 elevation, expanded, showing InkWell with topRight and topLeft radius:
 ![Alt text](https://i.imgur.com/JiwvY2H.png)
+</details>
 
-## SplitColorBackground
+<details>
+<summary>SplitColorBackground</summary>
 This widget enables the replication of designs seen on dribbble, uplabs, and other
 design websites that show a header section with one background color, a body section with
 a different background color, and rounded corners on the top of the body section.
@@ -184,9 +192,10 @@ final FloatingActionButtonLocation floatingActionButtonLocation;
 /// The Scaffold BottomNavigationBar is available for optional use.
 final BottomNavigationBar bottomNavigationBar;
 ```
+</details>
 
-## AvatarBackButton
-
+<details>
+<summary>AvatarBackButton</summary>
 This widget creates a back button with a user Avatar next to it, like WhatsApp does.
 Given that user avatar's generally are retrieved via network calls this widget takes a String URL as the avatar and
 passes it to a NetworkImage widget.
@@ -194,3 +203,4 @@ passes it to a NetworkImage widget.
 Screenshots:
 ![Alt text](https://i.imgur.com/QPVe1V2.png)
 ![Alt text](https://i.imgur.com/N5hP4Wd.png)
+</details>

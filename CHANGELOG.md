@@ -1,3 +1,14 @@
+## [2.0.0] - 03/15/2021
+* 🎉 Migrated to null safety 🎉
+
+## [2.0.0-nullsafety.1]
+* Update example to Android Embedding API v2, AndroidX
+* Update example to support macOS and web
+
+## [2.0.0-nullsafety.0]
+* Null safety pre-release
+* Update readme
+
 ## [1.6.1] - 02/7/2020
 * Minor documentation, readme updates
 

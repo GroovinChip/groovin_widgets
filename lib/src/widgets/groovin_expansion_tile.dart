@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ListTile, ListTileTheme;
 import 'package:flutter/widgets.dart';
+
+import 'groovin_list_tile.dart';
 
 const Duration _kExpand = Duration(milliseconds: 200);
 
@@ -30,10 +32,10 @@ class GroovinExpansionTile extends StatefulWidget {
     this.onExpansionChanged,
     this.boxDecoration,
     this.inkwellRadius,
-  }) : assert(
-        expandedCrossAxisAlignment != CrossAxisAlignment.baseline,
-        'CrossAxisAlignment.baseline is not supported since the expanded children '
-            'are aligned in a column, not a row. Try to use another constant.',
+  })  : assert(
+          expandedCrossAxisAlignment != CrossAxisAlignment.baseline,
+          'CrossAxisAlignment.baseline is not supported since the expanded children '
+          'are aligned in a column, not a row. Try to use another constant.',
         ),
         super(key: key);
 
@@ -144,9 +146,10 @@ class GroovinExpansionTile extends StatefulWidget {
 
 class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeOutTween = CurveTween(curve: Curves.easeOut);
-  static final Animatable<double> _easeInTween = CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween = Tween<double>(begin: 0.0, end: 0.5);
+  static final Animatable<double> _easeInTween =
+      CurveTween(curve: Curves.easeIn);
+  static final Animatable<double> _halfTween =
+      Tween<double>(begin: 0.0, end: 0.5);
 
   final ColorTween _borderColorTween = ColorTween();
   final ColorTween _headerColorTween = ColorTween();
@@ -156,10 +159,8 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
   late AnimationController _controller;
   late Animation<double> _iconTurns;
   late Animation<double> _heightFactor;
-  late Animation<Color?> _borderColor;
   late Animation<Color?> _headerColor;
   late Animation<Color?> _iconColor;
-  late Animation<Color?> _backgroundColor;
 
   bool _isExpanded = false;
 
@@ -169,14 +170,12 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     _controller = AnimationController(duration: _kExpand, vsync: this);
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-    _borderColor = _controller.drive(_borderColorTween.chain(_easeOutTween));
     _headerColor = _controller.drive(_headerColorTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
-    _backgroundColor = _controller.drive(_backgroundColorTween.chain(_easeOutTween));
 
-    _isExpanded = PageStorage.of(context)?.readState(context) as bool? ?? widget.initiallyExpanded;
-    if (_isExpanded)
-      _controller.value = 1.0;
+    _isExpanded = PageStorage.of(context)?.readState(context) as bool? ??
+        widget.initiallyExpanded;
+    if (_isExpanded) _controller.value = 1.0;
   }
 
   @override
@@ -192,8 +191,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
         _controller.forward();
       } else {
         _controller.reverse().then<void>((void value) {
-          if (!mounted)
-            return;
+          if (!mounted) return;
           setState(() {
             // Rebuild without widget.children.
           });
@@ -215,17 +213,28 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
         children: <Widget>[
           ListTileTheme.merge(
             iconColor: _iconColor.value,
-            textColor: _headerColor.value,
-            child: ListTile(
+            //textColor: titleColor,
+            child: GroovinListTile(
+              inkwellRadius: widget.inkwellRadius,
               onTap: _handleTap,
               contentPadding: widget.tilePadding,
               leading: widget.leading,
-              title: widget.title,
-              subtitle: widget.subtitle,
-              trailing: widget.trailing ?? RotationTransition(
-                turns: _iconTurns,
-                child: const Icon(Icons.expand_more),
+              title: DefaultTextStyle(
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1!
+                    .copyWith(color: titleColor),
+                child: widget.title,
               ),
+              subtitle: widget.subtitle,
+              trailing: widget.trailing ??
+                  RotationTransition(
+                    turns: _iconTurns,
+                    child: Icon(
+                      Icons.expand_more,
+                      color: widget.defaultTrailingIconColor,
+                    ),
+                  ),
             ),
           ),
           ClipRect(
@@ -266,14 +275,14 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
           child: Padding(
             padding: widget.childrenPadding ?? EdgeInsets.zero,
             child: Column(
-              crossAxisAlignment: widget.expandedCrossAxisAlignment ?? CrossAxisAlignment.center,
+              crossAxisAlignment: widget.expandedCrossAxisAlignment ??
+                  CrossAxisAlignment.center,
               children: widget.children,
             ),
           ),
           enabled: !closed,
         ),
-        offstage: closed
-    );
+        offstage: closed);
 
     return AnimatedBuilder(
       animation: _controller.view,

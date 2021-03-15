@@ -42,7 +42,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
           children: <Widget>[
             AvatarBackButton(
               avatar:
-                  'https://pbs.twimg.com/profile_images/1029551388622245898/uqiDZfFz_400x400.jpg',
+                  'https://avatars.githubusercontent.com/u/4250470?s=460&u=ba3546d38c6f3dcc65d7451e3f6d7893ca4dfde8&v=4',
               onPressed: () => print('tap'),
             ),
             SizedBox(width: 8),
@@ -80,9 +80,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 isExpanded: true,
                 hint: Text("Test Hint"),
                 value: value,
-                onChanged: (value) {
-                  print(value);
-                },
+                onChanged: (value) => print(value),
               ),
             ),
             Padding(
@@ -90,77 +88,69 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 left: 16.0,
                 right: 16.0,
               ),
-              child: Material(
-                elevation: 2.0,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                child: GroovinExpansionTile(
-                  defaultTrailingIconColor: Colors.indigoAccent,
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.indigoAccent,
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
+              child: GroovinExpansionTile(
+                defaultTrailingIconColor: Colors.indigoAccent,
+                leading: CircleAvatar(
+                  backgroundColor: Colors.indigoAccent,
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.white,
                   ),
-                  title: Text(
-                    "Test Person",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  subtitle: Text("123-456-7890"),
-                  onExpansionChanged: (value) {
-                    setState(() {
-                      isExpanded = value;
-                    });
-                  },
-                  inkwellRadius: !isExpanded
-                      ? BorderRadius.all(Radius.circular(8.0))
-                      : BorderRadius.only(
-                          topRight: Radius.circular(8.0),
-                          topLeft: Radius.circular(8.0),
-                        ),
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(5.0),
-                        bottomRight: Radius.circular(5.0),
-                      ),
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 4.0, right: 4.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.notifications),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.edit),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.comment),
-                                  onPressed: () {},
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.phone),
-                                  onPressed: () {},
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
+                title: Text(
+                  "Test Person",
+                  style: TextStyle(color: Colors.black),
+                ),
+                subtitle: Text("123-456-7890"),
+                onExpansionChanged: (value) {
+                  setState(() => isExpanded = value);
+                },
+                inkwellRadius: !isExpanded
+                    ? BorderRadius.all(Radius.circular(8.0))
+                    : BorderRadius.only(
+                        topRight: Radius.circular(8.0),
+                        topLeft: Radius.circular(8.0),
+                      ),
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(5.0),
+                      bottomRight: Radius.circular(5.0),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              IconButton(
+                                icon: Icon(Icons.delete),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.notifications),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.comment),
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.phone),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
             Padding(

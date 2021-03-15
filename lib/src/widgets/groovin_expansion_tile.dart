@@ -159,7 +159,6 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
   late AnimationController _controller;
   late Animation<double> _iconTurns;
   late Animation<double> _heightFactor;
-  late Animation<Color?> _headerColor;
   late Animation<Color?> _iconColor;
 
   bool _isExpanded = false;
@@ -170,7 +169,6 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     _controller = AnimationController(duration: _kExpand, vsync: this);
     _heightFactor = _controller.drive(_easeInTween);
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-    _headerColor = _controller.drive(_headerColorTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
 
     _isExpanded = PageStorage.of(context)?.readState(context) as bool? ??

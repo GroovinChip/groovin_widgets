@@ -10,10 +10,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'GroovinWidgets demo',
       theme: ThemeData(
+        brightness: Brightness.light,
         primaryColor: Colors.indigo,
         accentColor: Colors.indigoAccent,
-        //brightness: Brightness.dark
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.indigo,
+        accentColor: Colors.indigoAccent,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      themeMode: ThemeMode.system,
       home: GroovinWidgetsDemo(),
       debugShowCheckedModeBanner: false,
     );
@@ -73,12 +81,12 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
               child: OutlineDropdownButton(
                 items: [
                   DropdownMenuItem(
-                    child: Text("Test Item"),
-                    value: "Test Item",
+                    child: Text('Test Item'),
+                    value: 'Test Item',
                   ),
                 ],
                 isExpanded: true,
-                hint: Text("Test Hint"),
+                hint: Text('Test Hint'),
                 value: value,
                 onChanged: (value) => print(value),
               ),
@@ -98,10 +106,10 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                   ),
                 ),
                 title: Text(
-                  "Test Person",
+                  'Test Person',
                   style: TextStyle(color: Colors.black),
                 ),
-                subtitle: Text("123-456-7890"),
+                subtitle: Text('123-456-7890'),
                 onExpansionChanged: (value) {
                   setState(() => isExpanded = value);
                 },
@@ -120,7 +128,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                     child: Column(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
@@ -159,7 +167,6 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
-                    height: 45,
                     color: Colors.indigo,
                     padding: const EdgeInsets.all(16.0),
                     child: Center(
@@ -172,7 +179,6 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                     ),
                   ),
                   Container(
-                    height: 45,
                     color: Colors.grey.shade300,
                     padding: const EdgeInsets.all(16.0),
                     child: Center(

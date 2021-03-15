@@ -1,6 +1,6 @@
 name: groovin_widgets_example
 description: An example application that demonstrates the widgets found in the groovin_widgets package
-version: 2.0.0+1-nullsafety-1
+version: 2.0.0+1
 publish_to: 'none'
 
 environment:

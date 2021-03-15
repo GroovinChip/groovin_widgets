@@ -204,8 +204,6 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
   }
 
   Widget _buildChildren(BuildContext context, Widget? child) {
-    final Color titleColor = _headerColor.value!;
-
     return Container(
       decoration: widget.boxDecoration,
       child: Column(
@@ -213,19 +211,13 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
         children: <Widget>[
           ListTileTheme.merge(
             iconColor: _iconColor.value,
-            //textColor: titleColor,
+            //textColor: _headerColor.value,
             child: GroovinListTile(
               inkwellRadius: widget.inkwellRadius,
               onTap: _handleTap,
               contentPadding: widget.tilePadding,
               leading: widget.leading,
-              title: DefaultTextStyle(
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1!
-                    .copyWith(color: titleColor),
-                child: widget.title,
-              ),
+              title: widget.title,
               subtitle: widget.subtitle,
               trailing: widget.trailing ??
                   RotationTransition(

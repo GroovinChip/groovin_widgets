@@ -80,10 +80,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: GroovinExpansionTile(
                       defaultTrailingIconColor: Colors.indigoAccent,
                       leading: CircleAvatar(
@@ -93,10 +90,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                           color: Colors.white,
                         ),
                       ),
-                      title: Text(
-                        'Test Person',
-                        style: TextStyle(color: Colors.black),
-                      ),
+                      title: Text('Test Person'),
                       subtitle: Text('123-456-7890'),
                       onExpansionChanged: (value) {
                         setState(() => isExpanded = value);
@@ -284,7 +278,6 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                       ),
                       title: Text(
                         'Test Person',
-                        style: TextStyle(color: Colors.black),
                       ),
                       subtitle: Text('123-456-7890'),
                       onExpansionChanged: (value) {

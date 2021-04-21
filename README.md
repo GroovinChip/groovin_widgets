@@ -1,5 +1,6 @@
 # groovin_widgets
 ![Pub Version](https://img.shields.io/pub/v/groovin_widgets?style=plastic)
+[![Pana Analysis](https://github.com/GroovinChip/groovin_widgets/actions/workflows/main.yml/badge.svg)](https://github.com/GroovinChip/groovin_widgets/actions/workflows/main.yml)
 
 A Flutter package containing widgets and utilities created and edited by GroovinChip.
 

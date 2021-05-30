@@ -1,3 +1,7 @@
+## [2.1.0] - 05/30/2021
+* Introduces the `ScrollControllerBuilder` widget
+* Bump min Dart SDK version to 2.13
+
 ## [2.0.0] - 03/15/2021
 * 🎉 Migrated to null safety 🎉
 

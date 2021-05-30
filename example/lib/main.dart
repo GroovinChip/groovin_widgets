@@ -61,124 +61,130 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 ],
               ),
             ),
-            body: Center(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: OutlineDropdownButton(
-                      items: [
-                        DropdownMenuItem(
-                          child: Text('Test Item'),
-                          value: 'Test Item',
-                        ),
-                      ],
-                      isExpanded: true,
-                      hint: Text('Test Hint'),
-                      value: value,
-                      onChanged: (value) => print(value),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: GroovinExpansionTile(
-                      defaultTrailingIconColor: Colors.indigoAccent,
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.indigoAccent,
-                        child: Icon(
-                          Icons.person,
-                          color: Colors.white,
+            body: ScrollControllerBuilder(
+              builder: (_, controller) {
+                return SingleChildScrollView(
+                  controller: controller,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: OutlineDropdownButton(
+                          items: [
+                            DropdownMenuItem(
+                              child: Text('Test Item'),
+                              value: 'Test Item',
+                            ),
+                          ],
+                          isExpanded: true,
+                          hint: Text('Test Hint'),
+                          value: value,
+                          onChanged: (value) => print(value),
                         ),
                       ),
-                      title: Text('Test Person'),
-                      subtitle: Text('123-456-7890'),
-                      onExpansionChanged: (value) {
-                        setState(() => isExpanded = value);
-                      },
-                      inkwellRadius: !isExpanded
-                          ? BorderRadius.all(Radius.circular(8.0))
-                          : BorderRadius.only(
-                              topRight: Radius.circular(8.0),
-                              topLeft: Radius.circular(8.0),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: GroovinExpansionTile(
+                          defaultTrailingIconColor: Colors.indigoAccent,
+                          leading: CircleAvatar(
+                            backgroundColor: Colors.indigoAccent,
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.white,
                             ),
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(5.0),
-                            bottomRight: Radius.circular(5.0),
                           ),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    IconButton(
-                                      icon: Icon(Icons.delete),
-                                      onPressed: () {},
+                          title: Text('Test Person'),
+                          subtitle: Text('123-456-7890'),
+                          onExpansionChanged: (value) {
+                            setState(() => isExpanded = value);
+                          },
+                          inkwellRadius: !isExpanded
+                              ? BorderRadius.all(Radius.circular(8.0))
+                              : BorderRadius.only(
+                                  topRight: Radius.circular(8.0),
+                                  topLeft: Radius.circular(8.0),
+                                ),
+                          children: <Widget>[
+                            ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(5.0),
+                                bottomRight: Radius.circular(5.0),
+                              ),
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {},
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.notifications),
+                                          onPressed: () {},
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.edit),
+                                          onPressed: () {},
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.comment),
+                                          onPressed: () {},
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.phone),
+                                          onPressed: () {},
+                                        ),
+                                      ],
                                     ),
-                                    IconButton(
-                                      icon: Icon(Icons.notifications),
-                                      onPressed: () {},
-                                    ),
-                                    IconButton(
-                                      icon: Icon(Icons.edit),
-                                      onPressed: () {},
-                                    ),
-                                    IconButton(
-                                      icon: Icon(Icons.comment),
-                                      onPressed: () {},
-                                    ),
-                                    IconButton(
-                                      icon: Icon(Icons.phone),
-                                      onPressed: () {},
-                                    ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Container(
+                              color: Colors.indigo,
+                              padding: const EdgeInsets.all(16.0),
+                              child: Center(
+                                child: Text(
+                                  'Luminance',
+                                  style: TextStyle(
+                                    color: textLuminance(Colors.indigo),
+                                  ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Container(
-                          color: Colors.indigo,
-                          padding: const EdgeInsets.all(16.0),
-                          child: Center(
-                            child: Text(
-                              'Luminance',
-                              style: TextStyle(
-                                color: textLuminance(Colors.indigo),
+                            ),
+                            Container(
+                              color: Colors.grey.shade300,
+                              padding: const EdgeInsets.all(16.0),
+                              child: Center(
+                                child: Text(
+                                  'Luminance',
+                                  style: TextStyle(
+                                    color: textLuminance(Colors.grey.shade300),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                        Container(
-                          color: Colors.grey.shade300,
-                          padding: const EdgeInsets.all(16.0),
-                          child: Center(
-                            child: Text(
-                              'Luminance',
-                              style: TextStyle(
-                                color: textLuminance(Colors.grey.shade300),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             ),
             floatingActionButton: FloatingActionButton(
               child: Icon(Icons.drag_handle),

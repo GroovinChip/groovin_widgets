@@ -1398,7 +1398,7 @@ class _RenderListTile extends RenderBox {
     required double horizontalTitleGap,
     required double minVerticalPadding,
     required double minLeadingWidth,
-  })   : _isDense = isDense,
+  })  : _isDense = isDense,
         _visualDensity = visualDensity,
         _isThreeLine = isThreeLine,
         _textDirection = textDirection,

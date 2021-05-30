@@ -2,20 +2,18 @@ name: Pana Analysis
 on: [pull_request, workflow_dispatch]
 
 jobs:
-  
   package-analysis:
-    
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v2
-      
+
       - uses: axel-op/dart-package-analyzer@v3
         # set an id for the current step
         id: analysis
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-      
+
       # You can then use this id to retrieve the outputs in the next steps.
       # The following step shows how to exit the workflow with an error if the total score in percentage is below 50:
       - name: Check scores
@@ -25,7 +23,7 @@ jobs:
           TOTAL_MAX: ${{ steps.analysis.outputs.total_max }}
         run: |
           PERCENTAGE=$(( $TOTAL * 100 / $TOTAL_MAX ))
-          if (( $PERCENTAGE < 50 ))
+          if (( $PERCENTAGE < 100 ))
           then
             echo Score too low!
             exit 1

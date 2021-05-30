@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A widget that exposes a ScrollController to the child, thereby allowing 
+/// A widget that exposes a ScrollController to the child, thereby allowing
 /// widgets that require a ScrollController to be fully declarative.
 class ScrollControllerBuilder extends StatefulWidget {
   const ScrollControllerBuilder({

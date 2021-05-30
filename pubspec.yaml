@@ -1,6 +1,6 @@
 name: groovin_widgets
 description: A Flutter widget library containing custom widgets created and edited by GroovinChip.
-version: 2.0.0
+version: 2.1.0
 homepage: https://github.com/GroovinChip/GroovinWidgets
 #---
 # Publishing steps:
@@ -10,7 +10,7 @@ homepage: https://github.com/GroovinChip/GroovinWidgets
 #---
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
   flutter:

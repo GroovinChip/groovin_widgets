@@ -205,5 +205,19 @@ Screenshots:
 
 <details>
 <summary>ScrollControllerBuilder</summary>
-This widget exposes a ScrollController to the child, thereby allowing widgets that require a ScrollController to be fully declarative. It is similar to the `TextEditingController` builder found in the [bluejay package](https://pub.dev/packages/bluejay).
+This widget exposes a ScrollController to the child, thereby allowing widgets that require a ScrollController to be fully declarative. 
+
+Example usage:
+
+```dart
+ScrollControllerBuilder(
+  builder: (context, controller) => ListView(
+    controller: controller,
+    children: [
+      Text('Example),
+    ],
+  ),
+),
+```
+
 </details>

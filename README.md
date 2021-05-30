@@ -1,7 +1,3 @@
-# groovin_widgets
-![Pub Version](https://img.shields.io/pub/v/groovin_widgets?style=plastic)
-[![Pana Analysis](https://github.com/GroovinChip/groovin_widgets/actions/workflows/main.yml/badge.svg)](https://github.com/GroovinChip/groovin_widgets/actions/workflows/main.yml)
-
 A Flutter package containing widgets and utilities created and edited by GroovinChip.
 
 This package currently contains the following widgets:
@@ -11,6 +7,7 @@ This package currently contains the following widgets:
 - GroovinExpansionTile
 - SplitColorBackground
 - AvatarBackButton
+- ScrollControllerBuilder
 
 This package also contains the following utilities:
 - The `HexColor` class, which returns a `Color` based on a hex value String
@@ -204,4 +201,9 @@ passes it to a NetworkImage widget.
 Screenshots:
 ![Alt text](https://i.imgur.com/QPVe1V2.png)
 ![Alt text](https://i.imgur.com/N5hP4Wd.png)
+</details>
+
+<details>
+<summary>ScrollControllerBuilder</summary>
+This widget exposes a ScrollController to the child, thereby allowing widgets that require a ScrollController to be fully declarative. It is similar to the `TextEditingController` builder found in the [bluejay package](https://pub.dev/packages/bluejay).
 </details>

@@ -7,9 +7,15 @@ import 'package:flutter/material.dart';
 class AvatarBackButton extends StatelessWidget {
   const AvatarBackButton({
     Key? key,
+    required this.backButton,
     required this.avatar,
     this.onPressed,
   }) : super(key: key);
+
+  /// The widget to serve as the back button.
+  ///
+  /// Typically an [Icon] widget.
+  final Widget backButton;
 
   /// The string version of the URL for the user's avatar
   final String avatar;
@@ -27,10 +33,7 @@ class AvatarBackButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+          backButton,
           CircleAvatar(
             backgroundImage: NetworkImage(avatar),
           ),

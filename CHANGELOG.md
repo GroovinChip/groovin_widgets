@@ -1,3 +1,6 @@
+## [3.0.0] - 05/30/2021
+* BREAKING CHANGE - `AvatarBackButton` now requires a `Widget backButton` to allow for platform-adaptive functionality.
+
 ## [2.1.0] - 05/30/2021
 * Introduces the `ScrollControllerBuilder` widget
 * Bump min Dart SDK version to 2.13

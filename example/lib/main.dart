@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
 
@@ -52,6 +56,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   AvatarBackButton(
+                    backButton: AdaptiveBackIcon(),
                     avatar:
                         'https://avatars.githubusercontent.com/u/4250470?s=460&u=ba3546d38c6f3dcc65d7451e3f6d7893ca4dfde8&v=4',
                     onPressed: () => print('tap'),
@@ -226,6 +231,7 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   AvatarBackButton(
+                    backButton: AdaptiveBackIcon(),
                     avatar:
                         'https://avatars.githubusercontent.com/u/4250470?s=460&u=ba3546d38c6f3dcc65d7451e3f6d7893ca4dfde8&v=4',
                     onPressed: () => print('tap'),
@@ -406,5 +412,22 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
         }
       },
     );
+  }
+}
+
+class AdaptiveBackIcon extends StatelessWidget {
+  const AdaptiveBackIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    if (kIsWeb) {
+      return Icon(Icons.arrow_back);
+    }
+
+    if (Platform.isIOS || Platform.isMacOS) {
+      return Icon(CupertinoIcons.back);
+    } else {
+      return Icon(Icons.arrow_back);
+    }
   }
 }

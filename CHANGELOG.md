@@ -1,4 +1,4 @@
-## [3.0.0] - 06/25/2021
+## [3.0.1] - 06/25/2021
 * Add keys to widgets that were missing them and allow `OutlineDropdownButton` and its items to be typed.
 
 ## [3.0.0] - 05/30/2021

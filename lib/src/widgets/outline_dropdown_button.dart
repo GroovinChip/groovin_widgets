@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 /// customization.
 ///
 /// [isExpanded] defaults to true, unlike the source.
-class OutlineDropdownButton extends StatefulWidget {
+class OutlineDropdownButton<T> extends StatefulWidget {
   OutlineDropdownButton({
+    Key? key,
     this.inputDecoration = const InputDecoration(
       border: OutlineInputBorder(),
       contentPadding: EdgeInsets.all(8.0),
@@ -22,7 +23,7 @@ class OutlineDropdownButton extends StatefulWidget {
     this.onChanged,
     this.style,
     this.value,
-  });
+  }) : super(key: key);
 
   /// The InputDecoration that can be customized by the user.
   ///
@@ -41,23 +42,24 @@ class OutlineDropdownButton extends StatefulWidget {
   final double iconSize;
   final bool isDense;
   final bool isExpanded;
-  final List<DropdownMenuItem>? items;
+  final List<DropdownMenuItem<T>>? items;
   final ValueChanged? onChanged;
   final TextStyle? style;
   final value;
 
   @override
-  _OutlineDropdownButtonState createState() => _OutlineDropdownButtonState();
+  _OutlineDropdownButtonState<T> createState() =>
+      _OutlineDropdownButtonState<T>();
 }
 
-class _OutlineDropdownButtonState extends State<OutlineDropdownButton> {
+class _OutlineDropdownButtonState<T> extends State<OutlineDropdownButton<T>> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: InputDecorator(
         decoration: widget.inputDecoration,
         child: DropdownButtonHideUnderline(
-          child: DropdownButton(
+          child: DropdownButton<T>(
             disabledHint: widget.disabledHint,
             elevation: widget.elevation,
             hint: widget.hint,

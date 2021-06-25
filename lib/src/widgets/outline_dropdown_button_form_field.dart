@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 /// [isExpanded] defaults to true, unlike the source.
 class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   OutlineDropdownButtonFormField({
+    Key? key,
     this.disabledHint,
     this.elevation = 8,
     this.hint,
@@ -27,7 +28,7 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
       border: OutlineInputBorder(),
       contentPadding: EdgeInsets.all(8.0),
     ),
-  });
+  }) : super(key: key);
 
   // These properties correspond to the existing properties of a DropdownButton
   final Widget? disabledHint;

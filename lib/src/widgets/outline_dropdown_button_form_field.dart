@@ -58,6 +58,7 @@ class _OutlineDropdownButtonFormFieldState<T>
   Widget build(BuildContext context) {
     return Container(
       child: FormField<T>(
+        initialValue: widget.value,
         onSaved: (val) => widget.onSaved,
         validator: widget.validator,
         builder: (FormFieldState<T> state) {

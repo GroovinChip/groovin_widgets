@@ -1,3 +1,6 @@
+## [3.0.2] - 07/01/2021
+* Bug fix: Add `initialValue` to `FormField` created by `OutlineDropdownButtonFormField`
+
 ## [3.0.1] - 06/25/2021
 * Add keys to widgets that were missing them and allow `OutlineDropdownButton` and its items to be typed.
 

@@ -5,8 +5,8 @@ homepage: https://github.com/GroovinChip/groovin_widgets
 #---
 # Publishing steps:
 # 1) pana --no-warning
-# 2) flutter packages pub publish --dry-run
-# 3) flutter packages pub publish
+# 2) flutter pub publish --dry-run
+# 3) flutter pub publish
 #---
 
 environment:

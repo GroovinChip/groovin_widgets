@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+/// {@template scrollControllerBuilder}
 /// A widget that exposes a ScrollController to the child, thereby allowing
 /// widgets that require a ScrollController to be fully declarative.
+/// {@endtemplate}
 class ScrollControllerBuilder extends StatefulWidget {
+  /// {@macro scrollControllerBuilder}
   const ScrollControllerBuilder({
+    super.key,
     required this.builder,
   });
 
@@ -11,7 +15,7 @@ class ScrollControllerBuilder extends StatefulWidget {
       builder;
 
   @override
-  _ScrollControllerBuilderState createState() =>
+  State<ScrollControllerBuilder> createState() =>
       _ScrollControllerBuilderState();
 }
 

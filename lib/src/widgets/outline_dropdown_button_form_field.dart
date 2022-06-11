@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// {@template outlineDropdownButtonFormField}
 /// A [DropdownButton] with a default outlined [InputDecoration] that can be
 /// used in [Form] widgets.
 ///
@@ -9,9 +10,11 @@ import 'package:flutter/material.dart';
 /// customization.
 ///
 /// [isExpanded] defaults to true, unlike the source.
+/// {@endtemplate}
 class OutlineDropdownButtonFormField<T> extends StatefulWidget {
-  OutlineDropdownButtonFormField({
-    Key? key,
+  /// {@macro outlineDropdownButtonFormField}
+  const OutlineDropdownButtonFormField({
+    super.key,
     this.disabledHint,
     this.elevation = 8,
     this.hint,
@@ -21,14 +24,14 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
     @required this.items,
     this.onChanged,
     this.style,
-    this.value,
+    required this.value,
     this.validator,
     this.onSaved,
     this.decoration = const InputDecoration(
       border: OutlineInputBorder(),
       contentPadding: EdgeInsets.all(8.0),
     ),
-  }) : super(key: key);
+  });
 
   // These properties correspond to the existing properties of a DropdownButton
   final Widget? disabledHint;
@@ -38,7 +41,7 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   final bool isDense;
   final bool isExpanded;
   final TextStyle? style;
-  final value;
+  final T value;
   final InputDecoration decoration;
 
   // These properties are unique to this widget
@@ -48,7 +51,7 @@ class OutlineDropdownButtonFormField<T> extends StatefulWidget {
   final FormFieldSetter<T>? onSaved;
 
   @override
-  _OutlineDropdownButtonFormFieldState<T> createState() =>
+  State<OutlineDropdownButtonFormField<T>> createState() =>
       _OutlineDropdownButtonFormFieldState<T>();
 }
 
@@ -56,36 +59,34 @@ class _OutlineDropdownButtonFormFieldState<T>
     extends State<OutlineDropdownButtonFormField<T>> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: FormField<T>(
-        initialValue: widget.value,
-        onSaved: (val) => widget.onSaved,
-        validator: widget.validator,
-        builder: (FormFieldState<T> state) {
-          final decoration = widget.decoration
-              .copyWith(errorText: state.hasError ? state.errorText : null);
-          return InputDecorator(
-            decoration: decoration,
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<T>(
-                disabledHint: widget.disabledHint,
-                elevation: widget.elevation,
-                hint: widget.hint,
-                iconSize: widget.iconSize,
-                isDense: widget.isDense,
-                isExpanded: widget.isExpanded,
-                items: widget.items,
-                style: widget.style,
-                value: widget.value,
-                onChanged: (T? newValue) {
-                  state.didChange(newValue);
-                  widget.onChanged!(newValue);
-                },
-              ),
+    return FormField<T>(
+      initialValue: widget.value,
+      onSaved: (val) => widget.onSaved,
+      validator: widget.validator,
+      builder: (FormFieldState<T> state) {
+        final decoration = widget.decoration
+            .copyWith(errorText: state.hasError ? state.errorText : null);
+        return InputDecorator(
+          decoration: decoration,
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<T>(
+              disabledHint: widget.disabledHint,
+              elevation: widget.elevation,
+              hint: widget.hint,
+              iconSize: widget.iconSize,
+              isDense: widget.isDense,
+              isExpanded: widget.isExpanded,
+              items: widget.items,
+              style: widget.style,
+              value: widget.value,
+              onChanged: (T? newValue) {
+                state.didChange(newValue);
+                widget.onChanged!(newValue);
+              },
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

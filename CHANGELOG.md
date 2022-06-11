@@ -1,3 +1,8 @@
+## [3.1.0] - 06/11/2022
+* Flutter 3 upgrade
+* Use `flutter_lints` & required fixes
+* Update `GroovinListTile` and `GroovinExpansionTile` to match their latest `material` versions
+
 ## [3.0.2] - 07/01/2021
 * Bug fix: Add `initialValue` to `FormField` created by `OutlineDropdownButtonFormField`
 

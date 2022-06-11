@@ -5,9 +5,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:groovin_widgets/groovin_widgets.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -16,29 +18,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primaryColor: Colors.indigo,
-        accentColor: Colors.indigoAccent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          brightness: Brightness.light,
+          secondary: Colors.indigoAccent,
+        ),
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.indigo,
-        accentColor: Colors.indigoAccent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          surface: ThemeData.dark().canvasColor,
+          onSurface: const ColorScheme.dark().onSurface,
+          brightness: Brightness.dark,
+          secondary: Colors.indigoAccent,
+        ),
       ),
       themeMode: ThemeMode.system,
-      home: GroovinWidgetsDemo(),
+      home: const GroovinWidgetsDemo(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class GroovinWidgetsDemo extends StatefulWidget {
+  const GroovinWidgetsDemo({super.key});
+
   @override
-  _GroovinWidgetsDemoState createState() => _GroovinWidgetsDemoState();
+  State<GroovinWidgetsDemo> createState() => _GroovinWidgetsDemoState();
 }
 
 class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
-  var value;
+  String? value;
   bool isExpanded = false;
 
   @override
@@ -56,13 +68,13 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   AvatarBackButton(
-                    backButton: AdaptiveBackIcon(),
+                    backButton: const AdaptiveBackIcon(),
                     avatar:
                         'https://avatars.githubusercontent.com/u/4250470?s=460&u=ba3546d38c6f3dcc65d7451e3f6d7893ca4dfde8&v=4',
-                    onPressed: () => print('tap'),
+                    onPressed: () => debugPrint('tap'),
                   ),
-                  SizedBox(width: 8),
-                  Text('GroovinWidgets'),
+                  const SizedBox(width: 8),
+                  const Text('GroovinWidgets'),
                 ],
               ),
             ),
@@ -76,43 +88,43 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: OutlineDropdownButton(
-                          items: [
+                          items: const [
                             DropdownMenuItem(
-                              child: Text('Test Item'),
                               value: 'Test Item',
+                              child: Text('Test Item'),
                             ),
                           ],
                           isExpanded: true,
-                          hint: Text('Test Hint'),
+                          hint: const Text('Test Hint'),
                           value: value,
-                          onChanged: (value) => print(value),
+                          onChanged: (value) => debugPrint(value),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: GroovinExpansionTile(
                           defaultTrailingIconColor: Colors.indigoAccent,
-                          leading: CircleAvatar(
+                          leading: const CircleAvatar(
                             backgroundColor: Colors.indigoAccent,
                             child: Icon(
                               Icons.person,
                               color: Colors.white,
                             ),
                           ),
-                          title: Text('Test Person'),
-                          subtitle: Text('123-456-7890'),
+                          title: const Text('Test Person'),
+                          subtitle: const Text('123-456-7890'),
                           onExpansionChanged: (value) {
                             setState(() => isExpanded = value);
                           },
                           inkwellRadius: !isExpanded
-                              ? BorderRadius.all(Radius.circular(8.0))
-                              : BorderRadius.only(
+                              ? const BorderRadius.all(Radius.circular(8.0))
+                              : const BorderRadius.only(
                                   topRight: Radius.circular(8.0),
                                   topLeft: Radius.circular(8.0),
                                 ),
                           children: <Widget>[
                             ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(5.0),
                                 bottomRight: Radius.circular(5.0),
                               ),
@@ -126,23 +138,23 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         IconButton(
-                                          icon: Icon(Icons.delete),
+                                          icon: const Icon(Icons.delete),
                                           onPressed: () {},
                                         ),
                                         IconButton(
-                                          icon: Icon(Icons.notifications),
+                                          icon: const Icon(Icons.notifications),
                                           onPressed: () {},
                                         ),
                                         IconButton(
-                                          icon: Icon(Icons.edit),
+                                          icon: const Icon(Icons.edit),
                                           onPressed: () {},
                                         ),
                                         IconButton(
-                                          icon: Icon(Icons.comment),
+                                          icon: const Icon(Icons.comment),
                                           onPressed: () {},
                                         ),
                                         IconButton(
-                                          icon: Icon(Icons.phone),
+                                          icon: const Icon(Icons.phone),
                                           onPressed: () {},
                                         ),
                                       ],
@@ -192,22 +204,22 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
               },
             ),
             floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.drag_handle),
+              child: const Icon(Icons.drag_handle),
               onPressed: () => showModalBottomSheet(
                 context: context,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
                 ),
                 builder: (builder) {
-                  return Container(
+                  return SizedBox(
                     height: 250.0,
                     child: Column(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: ModalDrawerHandle(
                             handleColor: Colors.indigoAccent,
                           ),
@@ -231,20 +243,20 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   AvatarBackButton(
-                    backButton: AdaptiveBackIcon(),
+                    backButton: const AdaptiveBackIcon(),
                     avatar:
                         'https://avatars.githubusercontent.com/u/4250470?s=460&u=ba3546d38c6f3dcc65d7451e3f6d7893ca4dfde8&v=4',
-                    onPressed: () => print('tap'),
+                    onPressed: () => debugPrint('tap'),
                   ),
-                  SizedBox(width: 8),
-                  Text('GroovinWidgets'),
+                  const SizedBox(width: 8),
+                  const Text('GroovinWidgets'),
                 ],
               ),
             ),
             header: SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: const <Widget>[
                   Text(
                     'SplitColorBackground Header',
                     style: TextStyle(
@@ -261,17 +273,17 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: OutlineDropdownButton(
-                      items: [
+                    child: OutlineDropdownButton<String?>(
+                      items: const [
                         DropdownMenuItem(
-                          child: Text('Test Item'),
                           value: 'Test Item',
+                          child: Text('Test Item'),
                         ),
                       ],
                       isExpanded: true,
-                      hint: Text('Test Hint'),
+                      hint: const Text('Test Hint'),
                       value: value,
-                      onChanged: (value) => print(value),
+                      onChanged: (value) => debugPrint(value),
                     ),
                   ),
                   Padding(
@@ -281,29 +293,29 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                     ),
                     child: GroovinExpansionTile(
                       defaultTrailingIconColor: Colors.indigoAccent,
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         backgroundColor: Colors.indigoAccent,
                         child: Icon(
                           Icons.person,
                           color: Colors.white,
                         ),
                       ),
-                      title: Text(
+                      title: const Text(
                         'Test Person',
                       ),
-                      subtitle: Text('123-456-7890'),
+                      subtitle: const Text('123-456-7890'),
                       onExpansionChanged: (value) {
                         setState(() => isExpanded = value);
                       },
                       inkwellRadius: !isExpanded
-                          ? BorderRadius.all(Radius.circular(8.0))
-                          : BorderRadius.only(
+                          ? const BorderRadius.all(Radius.circular(8.0))
+                          : const BorderRadius.only(
                               topRight: Radius.circular(8.0),
                               topLeft: Radius.circular(8.0),
                             ),
                       children: <Widget>[
                         ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(5.0),
                             bottomRight: Radius.circular(5.0),
                           ),
@@ -317,23 +329,23 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     IconButton(
-                                      icon: Icon(Icons.delete),
+                                      icon: const Icon(Icons.delete),
                                       onPressed: () {},
                                     ),
                                     IconButton(
-                                      icon: Icon(Icons.notifications),
+                                      icon: const Icon(Icons.notifications),
                                       onPressed: () {},
                                     ),
                                     IconButton(
-                                      icon: Icon(Icons.edit),
+                                      icon: const Icon(Icons.edit),
                                       onPressed: () {},
                                     ),
                                     IconButton(
-                                      icon: Icon(Icons.comment),
+                                      icon: const Icon(Icons.comment),
                                       onPressed: () {},
                                     ),
                                     IconButton(
-                                      icon: Icon(Icons.phone),
+                                      icon: const Icon(Icons.phone),
                                       onPressed: () {},
                                     ),
                                   ],
@@ -382,22 +394,22 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
             ),
             bodyFlex: 4,
             floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.drag_handle),
+              child: const Icon(Icons.drag_handle),
               onPressed: () => showModalBottomSheet(
                 context: context,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),
                   ),
                 ),
                 builder: (builder) {
-                  return Container(
+                  return SizedBox(
                     height: 250.0,
                     child: Column(
-                      children: <Widget>[
+                      children: const <Widget>[
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: EdgeInsets.all(8.0),
                           child: ModalDrawerHandle(
                             handleColor: Colors.indigoAccent,
                           ),
@@ -416,18 +428,18 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
 }
 
 class AdaptiveBackIcon extends StatelessWidget {
-  const AdaptiveBackIcon({Key? key}) : super(key: key);
+  const AdaptiveBackIcon({super.key});
 
   @override
   Widget build(BuildContext context) {
     if (kIsWeb) {
-      return Icon(Icons.arrow_back);
+      return const Icon(Icons.arrow_back);
     }
 
     if (Platform.isIOS || Platform.isMacOS) {
-      return Icon(CupertinoIcons.back);
+      return const Icon(CupertinoIcons.back);
     } else {
-      return Icon(Icons.arrow_back);
+      return const Icon(Icons.arrow_back);
     }
   }
 }

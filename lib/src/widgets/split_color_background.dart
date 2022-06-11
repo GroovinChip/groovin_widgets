@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
+/// {@template splitColorBackground}
 /// A widget with header and body sections that each have different background colors.
 ///
 /// Reminiscent of various designs seen on dribbble, uplabs, and other design
 /// websites that show a header section with one background color, a body section
 /// with a different background color, and rounded corners on the top of the
 /// body section.
+/// {@endtemplate}
 class SplitColorBackground extends StatelessWidget {
+  /// {@macro splitColorBackground}
   const SplitColorBackground({
-    Key? key,
+    super.key,
     this.headerFlex = 1,
     required this.header,
     this.headerColor,
@@ -21,7 +24,7 @@ class SplitColorBackground extends StatelessWidget {
     this.floatingActionButton,
     this.floatingActionButtonLocation,
     this.bottomNavigationBar,
-  }) : super(key: key);
+  });
 
   /// The flex property of the [Flexible] containing the header widget.
   ///

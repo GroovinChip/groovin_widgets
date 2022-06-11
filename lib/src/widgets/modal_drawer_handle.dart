@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+/// {@template modalDrawerHandle}
 /// A customizable 'handle' intended for use with modal [BottomSheet] widgets.
+/// {@endtemplate}
 class ModalDrawerHandle extends StatelessWidget {
-  ModalDrawerHandle({
-    Key? key,
+  /// {@macro modalDrawerHandle}
+  const ModalDrawerHandle({
+    super.key,
     this.handleRowAlignment = MainAxisAlignment.center,
     this.handleHeight = 5.0,
     this.handleWidth = 25.0,
@@ -11,7 +14,7 @@ class ModalDrawerHandle extends StatelessWidget {
     this.handleBorderRadius = const BorderRadius.all(
       Radius.circular(10.0),
     ),
-  }) : super(key: key);
+  });
 
   /// The MainAxisAlignment of the Row that contains the handle.
   ///
@@ -41,14 +44,14 @@ class ModalDrawerHandle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: this.handleRowAlignment,
+      mainAxisAlignment: handleRowAlignment,
       children: <Widget>[
         Container(
-          height: this.handleHeight,
-          width: this.handleWidth,
+          height: handleHeight,
+          width: handleWidth,
           decoration: BoxDecoration(
-            color: this.handleColor ?? Colors.grey.shade300,
-            borderRadius: this.handleBorderRadius,
+            color: handleColor ?? Colors.grey.shade300,
+            borderRadius: handleBorderRadius,
           ),
         ),
       ],

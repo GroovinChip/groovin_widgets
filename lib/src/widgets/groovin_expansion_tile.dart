@@ -244,7 +244,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
     _iconColor = _controller.drive(_iconColorTween.chain(_easeInTween));
 
-    _isExpanded = PageStorage.of(context)?.readState(context) as bool? ??
+    _isExpanded = PageStorage.of(context).readState(context) as bool? ??
         widget.initiallyExpanded;
     if (_isExpanded) _controller.value = 1.0;
   }
@@ -268,7 +268,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
           });
         });
       }
-      PageStorage.of(context)?.writeState(context, _isExpanded);
+      PageStorage.of(context).writeState(context, _isExpanded);
     });
     widget.onExpansionChanged?.call(_isExpanded);
   }
@@ -350,7 +350,7 @@ class _GroovinExpansionTileState extends State<GroovinExpansionTile>
     _headerColorTween
       ..begin = widget.collapsedTextColor ??
           expansionTileTheme.collapsedTextColor ??
-          theme.textTheme.subtitle1!.color
+          theme.textTheme.titleMedium!.color
       ..end = widget.textColor ??
           expansionTileTheme.textColor ??
           colorScheme.primary;

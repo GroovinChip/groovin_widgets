@@ -214,10 +214,10 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                   ),
                 ),
                 builder: (builder) {
-                  return SizedBox(
+                  return const SizedBox(
                     height: 250.0,
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: ModalDrawerHandle(
@@ -253,10 +253,10 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                 ],
               ),
             ),
-            header: SafeArea(
+            header: const SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
+                children: <Widget>[
                   Text(
                     'SplitColorBackground Header',
                     style: TextStyle(
@@ -404,10 +404,10 @@ class _GroovinWidgetsDemoState extends State<GroovinWidgetsDemo> {
                   ),
                 ),
                 builder: (builder) {
-                  return SizedBox(
+                  return const SizedBox(
                     height: 250.0,
                     child: Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         Padding(
                           padding: EdgeInsets.all(8.0),
                           child: ModalDrawerHandle(

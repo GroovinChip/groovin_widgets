@@ -1,3 +1,6 @@
+## [3.2.0] - 06/11/2022
+* Dart 3 support
+
 ## [3.1.0] - 06/11/2022
 * Flutter 3 upgrade
 * Use `flutter_lints` & required fixes
